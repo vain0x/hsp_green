@@ -104,7 +104,7 @@
 #endif //defined(_DEBUG)
 
 //others
-#define global _procfunc(%1) __procfunc_result@_userdef = (%1)// do_func
+#define global ignore(%1) __ignored_value@__uedai = (%1)
 
 // ”’l‘€ìƒ}ƒNƒ
 #define global ctype MAKELONG(%1,%2) (LOWORD(%1) | (LOWORD(%2) << 16))
