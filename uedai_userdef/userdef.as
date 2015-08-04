@@ -80,7 +80,7 @@
 #define ctype ctype
 #undef  ctype
 
-#define global NULL     0
+#define global null     0
 #ifndef __clhsp__
  #define global true    1
  #define global false   0
@@ -106,21 +106,19 @@
 
 // 数値操作マクロ
 #define global ctype MAKELONG(%1,%2) (LOWORD(%1) | (LOWORD(%2) << 16))
-#define global ctype MAKELONG2(%1=0,%2=0,%3=0,%4=0) MAKELONG(MAKEWORD((%1),(%2)),MAKEWORD((%3),(%4)))
+#define global ctype MAKELONG4(%1=0,%2=0,%3=0,%4=0) MAKELONG(MAKEWORD((%1),(%2)),MAKEWORD((%3),(%4)))
 #define global ctype HIWORD(%1) (((%1) >> 16) & 0xFFFF)
 #define global ctype LOWORD(%1) ((%1) & 0xFFFF)
-#define global ctype BITOFF(%1,%2=0) ((%1) & bturn(%2))
+#define global ctype bit_sub(%1,%2=0) ((%1) & bit_complement(%2))
 #define global ctype RGB(%1,%2,%3) (LOBYTE(%1) | LOBYTE(%2) << 8 | LOBYTE(%3) << 16)
 #define global ctype pow_2(%1) (1 << ((%1) - 1))
-;#define global ctype to32b_from16b(%1) cond_i( (%1) & 0x8000, 0 - ((%1) ^ 0xFFFF) - 1, (%1) )
-;#define global ctype complementOf2(%1) (bturn(%1) + 1)		// 2 の補数
 
 #define global ctype MAKEWORD(%1,%2) (LOBYTE(%1) | LOBYTE(%2) << 8)
 #define global ctype HIBYTE(%1) LOBYTE((%1) >> 8)
 #define global ctype LOBYTE(%1) ((%1) & 0xFF)
-#define global ctype bturn(%1) ((%1) ^ -1)
-#define global ctype byteAt(%1,%2=0) LOBYTE((%1) >> ((%2) * 8))
-#define global ctype bitAt(%1,%2=0) (((%1) >> (%2)) & 1)
+#define global ctype bit_complement(%1) ((%1) ^ -1)
+#define global ctype byte_at(%1,%2=0) LOBYTE((%1) >> ((%2) * 8))
+#define global ctype bit_at(%1,%2=0) (((%1) >> (%2)) & 1)
 
 #ifdef __hsp64__
  #const global pointer_size 64
@@ -192,24 +190,24 @@
 #module  _userdef_cleanup
 #ifdef _DEBUG
 #deffunc _userdef_cleanup_sttm onexit
-	remove_file_if_exists "obj"
-	remove_file_if_exists "hsptmp"
+	delfile_if_exists "obj"
+	delfile_if_exists "hsptmp"
 	return
 #endif
-#deffunc remove_file_if_exists str path
+#deffunc delfile_if_exists str path
 	exist path : if (strsize >= 0) { delfile path }
 	return
 #global
 
 // 元々マクロだったもの
 #module
-#define global ctype isInRange(%1,%2=0,%3=MAX_INT) isInRange__userdef(%1,%2,%3)// %1 が区間 [%2, %3) 内か否か
-#defcfunc isInRange__userdef int self, int min_, int max_
+#define global ctype in_interval(%1,%2=0,%3=INT_MAX@) _in_interval@__uedai(%1,%2,%3)// %1 が区間 [%2, %3) 内か否か
+#defcfunc _in_interval@__ue_dai int self, int min_, int max_
 	return (min_ <= self && self <= max_)
 #global
 #module
-#define global ctype boxin(%1= 0, %2 = 0, %3 = 640, %4 = 480, %5 = mousex, %6 = mousey) boxin__userdef(%1,%2,%3,%4,%5,%6);( (((%1) <= (%5)) && ((%5) <= (%3))) && (((%2) <= (%6)) && ((%6) <= (%4))) )
-#defcfunc boxin__userdef int x1, int y1, int x2, int y2,  int px, int py
+#define global ctype in_rect(%1= 0, %2 = 0, %3 = 640, %4 = 480, %5 = mousex, %6 = mousey) _in_rect@__uedai(%1,%2,%3,%4,%5,%6);( (((%1) <= (%5)) && ((%5) <= (%3))) && (((%2) <= (%6)) && ((%6) <= (%4))) )
+#defcfunc _in_rect@__uedai int x1, int y1, int x2, int y2,  int px, int py
 	return (x1 <= px && px <= x2) && (y1 <= py && py <= y2)
 #global
 
