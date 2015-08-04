@@ -8,15 +8,7 @@
 
 	;#include "hsp3_64.as"
 	#include "Mo/WrapCall.as"
-	#include "Mo/debug.as"
-
-#ifdef __hsp3_uedit__
- #cmpopt optshort 1
- #cmpopt optinfo 1
- ;#cmpopt axiout 1
- #define global __main__ (__include_level__ == 0)
- #define global ctype __defined(%1) (??"%1")
-#endif //defined(__hsp3_uedit__)
+	#include "uedai_userdef/debug.hsp"
 
 //•W€–½—ß—p’è”’l
 #define global ctype mref_param(%1) (%1)
@@ -248,9 +240,6 @@
 #deffunc _userdef_cleanup_sttm onexit
 	remove_file_if_exists "obj"
 	remove_file_if_exists "hsptmp"
- #ifdef __hsp3_uedit__
-	remove_file_if_exists "hsptmp-axi.txt"
- #endif
 	return
 #endif
 #deffunc remove_file_if_exists str path
