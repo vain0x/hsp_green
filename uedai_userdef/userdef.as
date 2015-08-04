@@ -8,6 +8,7 @@
 
 	;#include "hsp3_64.as"
 	#include "uedai_userdef/debug.hsp"
+	#include "hspmath.as"
 
 //•W€–½—ß—p’è”’l
 #define global ctype mref_param(%1) (%1)
@@ -86,10 +87,7 @@
  #define global success 1
  #define global failure 0
 #endif
-#define global MAX_INT  0x7FFFFFFF//  2147483647
-#define global MIN_INT  0x80000000// -2147483648
 #define global MAX_PATH 260
-#define global INFINITY (logf@hsp(0))
 
 //actually helpers
 #define global elsif else : if
