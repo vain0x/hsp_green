@@ -74,12 +74,6 @@
 //êFê›íË
 #define self
 #undef  self
-#define which// for opex.hpi
-#undef  which
-#define what
-#undef  what
-#define nullmod// for call.hpi
-#undef  nullmod
 #define global global
 #undef  global
 #define ctype ctype
