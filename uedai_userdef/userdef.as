@@ -104,7 +104,6 @@
 #endif //defined(_DEBUG)
 
 //others
-#define global ctype unless(%1) if ((%1) == 0) : else
 #define global do_not if (0)
 #define global pseudomodule %t_pseudomodule goto *%i@
 #define global pseudoglobal %t_pseudomodule *%o@
