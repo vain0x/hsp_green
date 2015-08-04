@@ -220,6 +220,10 @@
 	if (lhs < rhs) { return rhs } else { return lhs }
 #defcfunc minor_d double lhs, double rhs
 	if (lhs > rhs) { return rhs } else { return lhs }
+#defcfunc major_s str lhs, str rhs
+	if ((lhs != rhs) < 0) { return rhs } else { return lhs }
+#defcfunc minor_s str lhs, str rhs
+	if ((lhs != rhs) > 0) { return rhs } else { return lhs }
 #global
 
 #module
