@@ -179,11 +179,6 @@
 #define global _comma ,
 #define global _colon :
 
-#if 0
- #undef buffer
- #define buffer(%1,%2,%3,%4=0) screen %1,%2,%3, (screen_tool | (%4))
-#endif
-
 //---- switch --------------------------------
 #undef switch
 #undef case
