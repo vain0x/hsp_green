@@ -7,7 +7,6 @@
 #define global __userdef__
 
 	;#include "hsp3_64.as"
-	#include "Mo/WrapCall.as"
 	#include "uedai_userdef/debug.hsp"
 
 //•W€–½—ß—p’è”’l
