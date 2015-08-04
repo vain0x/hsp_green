@@ -205,8 +205,7 @@
 	return (first <= self && self < last)
 #global
 #module
-#define global ctype in_rect(%1= 0, %2 = 0, %3 = 640, %4 = 480, %5 = mousex, %6 = mousey) _in_rect@__uedai(%1,%2,%3,%4,%5,%6);( (((%1) <= (%5)) && ((%5) <= (%3))) && (((%2) <= (%6)) && ((%6) <= (%4))) )
-#defcfunc _in_rect@__uedai int x1, int y1, int x2, int y2,  int px, int py
+#defcfunc in_rect int px, int py, int x1, int y1, int x2, int y2
 	return (x1 <= px && px <= x2) && (y1 <= py && py <= y2)
 #global
 
