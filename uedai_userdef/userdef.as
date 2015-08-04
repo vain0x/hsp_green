@@ -84,8 +84,6 @@
 #ifndef __clhsp__
  #define global true    1
  #define global false   0
- #define global success 1
- #define global failure 0
 #endif
 #define global MAX_PATH 260
 
