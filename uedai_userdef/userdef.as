@@ -104,9 +104,6 @@
 #endif //defined(_DEBUG)
 
 //others
-#define global do_not if (0)
-#define global pseudomodule %t_pseudomodule goto *%i@
-#define global pseudoglobal %t_pseudomodule *%o@
 #define global _procfunc(%1) __procfunc_result@_userdef = (%1)// do_func
 #define global TwoSet(%1,%2=0,%3,%4) %1(%2,0) = %3 : %1(%2,1) = %4// %1(%2, 0) Ç∆ %1(%2, 1) Ç… %3,%4 Çë„ì¸Ç∑ÇÈ
 #define global IntSwap(%1,%2) if((%1)!=(%2)){%1 ^= %2 : %2 ^= %1 : %1 ^= %2}//intå^ÇÃ %1 Ç∆ %2 Çåä∑Ç∑ÇÈ
@@ -136,12 +133,6 @@
 #define global ctype bturn(%1) ((%1) ^ -1)
 #define global ctype byteAt(%1,%2=0) LOBYTE((%1) >> ((%2) * 8))
 #define global ctype bitAt(%1,%2=0) (((%1) >> (%2)) & 1)
-
-#define global GetAByte byteAt
-#define global GetABit bitAt
-#define global GETBYTE LOBYTE
-#define global do_not_bgn pseudomodule
-#define global do_not_end pseudoglobal
 
 #ifdef __hsp64__
  #const global pointer_size 64
@@ -225,8 +216,6 @@
 // å≥ÅXÉ}ÉNÉçÇæÇ¡ÇΩÇ‡ÇÃ
 #module
 #define global ctype isInRange(%1,%2=0,%3=MAX_INT) isInRange__userdef(%1,%2,%3)// %1 Ç™ãÊä‘ [%2, %3) ì‡Ç©î€Ç©
-#define global numrg isInRange
-#define global isRange isInRange
 #defcfunc isInRange__userdef int self, int min_, int max_
 	return (min_ <= self && self <= max_)
 #global
