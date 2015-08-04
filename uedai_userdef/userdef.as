@@ -203,9 +203,8 @@
 
 // Œ³Xƒ}ƒNƒ‚¾‚Á‚½‚à‚Ì
 #module
-#define global ctype in_interval(%1,%2=0,%3=INT_MAX@) _in_interval@__uedai(%1,%2,%3)// %1 ‚ª‹æŠÔ [%2, %3) “à‚©”Û‚©
-#defcfunc _in_interval@__ue_dai int self, int min_, int max_
-	return (min_ <= self && self <= max_)
+#defcfunc in_interval int x, int first, int last
+	return (first <= x && x < last)
 #global
 #module
 #define global ctype in_rect(%1= 0, %2 = 0, %3 = 640, %4 = 480, %5 = mousex, %6 = mousey) _in_rect@__uedai(%1,%2,%3,%4,%5,%6);( (((%1) <= (%5)) && ((%5) <= (%3))) && (((%2) <= (%6)) && ((%6) <= (%4))) )
