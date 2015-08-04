@@ -166,16 +166,6 @@
 #define global ctype _cat3(%1,%2,%3)%1%2%3
 #define global ctype _cat_scope(%1,%2)_cat3(%1,@,%2)
 
-#define global ctype _list_1(%1 = _empty)                                                                                                         %1
-#define global ctype _list_2(%1 = _empty, %2 = _empty)                                                                                            %1, %2
-#define global ctype _list_3(%1 = _empty, %2 = _empty, %3 = _empty)                                                                               %1, %2, %3
-#define global ctype _list_4(%1 = _empty, %2 = _empty, %3 = _empty, %4 = _empty)                                                                  %1, %2, %3, %4
-#define global ctype _list_5(%1 = _empty, %2 = _empty, %3 = _empty, %4 = _empty, %5 = _empty)                                                     %1, %2, %3, %4, %5
-#define global ctype _list_6(%1 = _empty, %2 = _empty, %3 = _empty, %4 = _empty, %5 = _empty, %6 = _empty)                                        %1, %2, %3, %4, %5, %6
-#define global ctype _list_7(%1 = _empty, %2 = _empty, %3 = _empty, %4 = _empty, %5 = _empty, %6 = _empty, %7 = _empty)                           %1, %2, %3, %4, %5, %6, %7
-#define global ctype _list_8(%1 = _empty, %2 = _empty, %3 = _empty, %4 = _empty, %5 = _empty, %6 = _empty, %7 = _empty, %8 = _empty)              %1, %2, %3, %4, %5, %6, %7, %8
-#define global ctype _list_9(%1 = _empty, %2 = _empty, %3 = _empty, %4 = _empty, %5 = _empty, %6 = _empty, %7 = _empty, %8 = _empty, %9 = _empty) %1, %2, %3, %4, %5, %6, %7, %8, %9
-
 #define global _comma ,
 #define global _colon :
 
