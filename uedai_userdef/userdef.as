@@ -105,16 +105,6 @@
 
 //others
 #define global _procfunc(%1) __procfunc_result@_userdef = (%1)// do_func
-#define global TwoSet(%1,%2=0,%3,%4) %1(%2,0) = %3 : %1(%2,1) = %4// %1(%2, 0) Ç∆ %1(%2, 1) Ç… %3,%4 Çë„ì¸Ç∑ÇÈ
-#define global IntSwap(%1,%2) if((%1)!=(%2)){%1 ^= %2 : %2 ^= %1 : %1 ^= %2}//intå^ÇÃ %1 Ç∆ %2 Çåä∑Ç∑ÇÈ
-;#define global PMSwap(%1,%2) if(%1!=%2){%1 += %2 : %2 = %1 - %2 : %1 -= %2}// â¡å∏éZÇ≈åä∑Ç∑ÇÈ
-#define global dupmv(%1,%2) dupptr %1, varptr(%2), 16 * length(%2), vartype("struct")
-#define global delmodall(%1) foreach %1 : delmod %1(cnt) : loop
-#define global ctype isValidEnum(%1,%2) isInRange(%1, %2_None, %2_Max - 1)
-#define global ctype isInRect(%1=RECT,%2=mousex,%3=mousey) ( boxin((%1(0)), (%1(1)), (%1(2)), (%1(3)), (%2), (%3)) )
-#define global ctype RectTo4prm(%1) %1(0), %1(1), %1(2), %1(3)// splatRect
-#define global SetStyle(%1,%2=-16,%3=0,%4=0) SetWindowLong (%1),(%2),BITOFF(GetWindowLong((%1),(%2)) | (%3), (%4))
-#define global ChangeVisible(%1=hwnd,%2=1) SetStyle (%1), -16, 0x10000000 * (%2), 0x10000000 * ((%2) == 0)// Visible êÿÇËë÷Ç¶
 
 // êîílëÄçÏÉ}ÉNÉç
 #define global ctype MAKELONG(%1,%2) (LOWORD(%1) | (LOWORD(%2) << 16))
