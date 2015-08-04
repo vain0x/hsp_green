@@ -12,10 +12,6 @@
 //ログを保存するフォルダへのパス
 #define global Dir_LogFilePath (dir_mydoc + "/hsp_debug_log.txt")
 
-#define null 0
-#define true  1
-#define false 0
-
 #uselib "winmm.dll"
 #cfunc timeGetTime "timeGetTime"
 
