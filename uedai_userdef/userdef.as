@@ -231,7 +231,7 @@
 #module
 ///set current color decomposing RGB
 #deffunc color32 int cref
-	color LOBYTE(cref), LOBYTE(cref >> 8), LOBYTE(cref >> 16)
+	color byte_at(cref, 0), byte_at(cref, 1), byte_at(cref, 2)
 	return
 #global
 
