@@ -279,20 +279,4 @@
 	return
 #global
 
-//[[deorecated]]
-#define global GetHigh !!"deprecated: GetHigh -> HIWORD"!!
-#define global GetLow  !!"deprecated: GetLow  -> LOWORD "!!
-#define global bitnum !!"deprecated: bitnum(n) = (1 << n) = pow_2(n + 1)"!!
-#define global cwhich_int !!{"deprecated: #include "Mo/cwhich.as""}!!
-#define global IsPositive !!"deprecated: IsPositive(x) = (x > 0)"
-#define global IsNegative !!"deprecated: IsNegative(x) = (x < 0)"
-#define global Lim !!"deprecated: lim -> numrg"!!
-#define exdel !!"deprecated: exdel -> removeFileIfExist"!!
-#define global maxval !!"deprecated: maxval -> major_i or major_d"!!
-#define global minval !!"deprecated: minval -> minor_d or minor_d"!!
-#define global to32b_from16b !!"deprecated"!!
-#define global _nowtime !!"deprecated: use benchmark"!!
-#define global vtname !!"deprecated: renamed to varTypeName"!!
-#define global defvar !!"deprecated: renamed to declvar"!!
-
 #endif // !defined(__userdef__)
