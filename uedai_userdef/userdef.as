@@ -118,12 +118,6 @@
 #define global ctype byte_at(%1,%2=0) LOBYTE((%1) >> ((%2) * 8))
 #define global ctype bit_at(%1,%2=0) (((%1) >> (%2)) & 1)
 
-#ifdef __hsp64__
- #const global pointer_size 64
-#else
- #const global pointer_size 32
-#endif
-
 // ƒƒ^ŠÖ”
 #define global _empty// empty
 #define global ctype _rm(%1)/*%1*/
