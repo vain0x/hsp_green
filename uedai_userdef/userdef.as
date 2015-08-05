@@ -88,7 +88,14 @@
 //actually helpers
 #define global elsif else : if
 #define global delfile delete
-#define global gradf2(%1 = 0, %2 = 0, %3, %4, %5 = 0, %6, %7) gradf (%1), (%2), (%3) - (%1), (%4) - (%2), (%5), (%6), (%7)
+
+#module
+//gradf の、位置と大きさを指定するバージョン。
+#deffunc gradf2 int x1, int y1, int sx, int sy, int mode, int rgb1, int rgb2
+	gradf@hsp x1, y1, sx - x1, sy - y1, mode, rgb1, rgb2
+	return
+#global
+
 #define global mousex2 (ginfo_mx - (ginfo_wx1 + (ginfo_sizex - ginfo_winx) / 2))
 #define global mousey2 (ginfo_my - (ginfo_wy1 + (ginfo_sizey - ginfo_winy) - (ginfo_sizex - ginfo_winx) / 2))
 
