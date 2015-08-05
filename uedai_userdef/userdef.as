@@ -103,20 +103,24 @@
 #define global ignore(%1) __ignored_value@__uedai = (%1)
 
 // 数値操作マクロ
-#define global ctype MAKELONG(%1,%2) (LOWORD(%1) | (LOWORD(%2) << 16))
-#define global ctype MAKELONG4(%1=0,%2=0,%3=0,%4=0) MAKELONG(MAKEWORD((%1),(%2)),MAKEWORD((%3),(%4)))
-#define global ctype HIWORD(%1) (((%1) >> 16) & 0xFFFF)
-#define global ctype LOWORD(%1) ((%1) & 0xFFFF)
-#define global ctype bit_sub(%1,%2=0) ((%1) & bit_complement(%2))
-#define global ctype RGB(%1,%2,%3) (LOBYTE(%1) | LOBYTE(%2) << 8 | LOBYTE(%3) << 16)
-#define global ctype pow_2(%1) (1 << ((%1) - 1))
+#define global ctype MAKELONG(%1, %2) \
+	(LOWORD(%1) | (LOWORD(%2) << 16))
 
-#define global ctype MAKEWORD(%1,%2) (LOBYTE(%1) | LOBYTE(%2) << 8)
-#define global ctype HIBYTE(%1) LOBYTE((%1) >> 8)
-#define global ctype LOBYTE(%1) ((%1) & 0xFF)
+#define global ctype MAKELONG4(%1 = 0, %2 = 0, %3 = 0, %4 = 0) \
+	MAKELONG(MAKEWORD((%1), (%2)), MAKEWORD((%3), (%4)))
+
+#define global ctype HIWORD(%1) LOWORD((%1) >> 16)
+#define global ctype LOWORD(%1) ((%1) & 0xFFFF)
+
+#define global ctype MAKEWORD(%1, %2) (LOBYTE(%1) | LOBYTE(%2) << 8)
+#define global ctype HIBYTE(%1)       LOBYTE((%1) >> 8)
+#define global ctype LOBYTE(%1)       ((%1) & 0xFF)
+#define global ctype byte_at(%1, %2)  LOBYTE((%1) >> ((%2) * 8))
+
+#define global ctype pow_2(%1)          (1 << (%1))
+#define global ctype bit_sub(%1, %2)    ((%1) & bit_complement(%2))
 #define global ctype bit_complement(%1) ((%1) ^ -1)
-#define global ctype byte_at(%1,%2=0) LOBYTE((%1) >> ((%2) * 8))
-#define global ctype bit_at(%1,%2=0) (((%1) >> (%2)) & 1)
+#define global ctype bit_at(%1, %2)     (((%1) >> (%2)) & 1)
 
 #module
 #defcfunc int_from_signed_short int x
@@ -222,6 +226,10 @@
 	if ((lhs != rhs) > 0) { return rhs } else { return lhs }
 #global
 
+//COLORREF値
+#define global ctype RGB(%1 = 0, %2 = 0, %3 = 0) \
+	MAKELONG4((%1), (%2), (%3), 0)
+	
 #module
 #deffunc color32 int cref
 	color byte_at(cref, 0), byte_at(cref, 1), byte_at(cref, 2)
