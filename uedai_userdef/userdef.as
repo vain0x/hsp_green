@@ -79,7 +79,7 @@
 #undef  ctype
 
 #define global null     0
-#ifndef __clhsp__
+#ifndef true
  #define global true    1
  #define global false   0
 #endif
