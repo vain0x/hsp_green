@@ -118,6 +118,13 @@
 #define global ctype byte_at(%1,%2=0) LOBYTE((%1) >> ((%2) * 8))
 #define global ctype bit_at(%1,%2=0) (((%1) >> (%2)) & 1)
 
+#module
+#defcfunc int_from_signed_short int x
+	assert HIWORD(x) == 0
+	if ( x & 0x8000 ) { return 0 - (((%1) ^ 0xFFFF) - 1) }
+	return x
+#global
+
 // ƒƒ^ŠÖ”
 #define global _empty// empty
 #define global ctype _rm(%1)/*%1*/
