@@ -6,7 +6,6 @@
 
 #define global __userdef__
 
-	;#include "hsp3_64.as"
 	#include "uedai_userdef/debug.hsp"
 
 //標準命令用定数値
@@ -157,7 +156,6 @@
 #define global swredo       %tswitch goto *%p3					// 再分岐 (比較値は同じ)
 #define global go_case(%1)  %tswitch %p = (%1) : swredo			// 比較値を変更して再分岐
 #define global go_default   %tswitch goto swdefault_label		// default があればそこに、なければ swend に飛ぶ
-//	#define global swthis       %tswitch (%p)
 
 #define global xcase    swbreak : case
 #define global xdefault swbreak : default
@@ -224,7 +222,6 @@
 #global
 
 #module
-///set current color decomposing RGB
 #deffunc color32 int cref
 	color byte_at(cref, 0), byte_at(cref, 1), byte_at(cref, 2)
 	return
