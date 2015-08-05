@@ -153,45 +153,66 @@
 #undef swend
 #undef swbreak
 
-// %p0: 比較元の値を持つ変数
-// %p1: swend へのラベル
-// %p2: switch の先頭へのラベル (for: swcontinue)
-// %p3: switch の先頭へのラベル (for: swredo)
-#define global switch(%1=true) %tswitch %i0 %i0 %i0 %i0  swthis_bgn(%p) swdefault_init : *%p2 : %p = (%1) : *%p3 : if ( 0 ) {
+/**
+* switch マクロ
+*
+* %p0: 比較元の値を保存する変数
+* %p1: swend へのラベル (for swbreak)
+* %p2: switch の先頭へのラベル (for swcontinue)
+* %p3: switch の先頭へのラベル (for swredo)
+*/
+#define global switch(%1 = true) %tswitch \
+	%i0 %i0 %i0 %i0  swthis_bgn(%p)  swdefault_init \
+	: *%p2 : %p = (%1) : *%p3 : if (0) {
+
 #define global case(%1)     %tswitch %i0 goto *%p } if ( (%p1) == (%1) ) { *%o
 #define global case_not(%1) %tswitch %i0 goto *%p } if ( (%p1) != (%1) ) { *%o
 #define global case_if(%1)  %tswitch %i0 goto *%p } if ( (%1) ) { *%o
-#define global default      %tswitch } swdefault_place_default : if ( 1 ) {
+#define global default      %tswitch } swdefault_place_default : if (1) {
 #define global swend        %tswitch } swdefault_place_swend : %o0 *%o %o0 %o0 : swthis_end swdefault_term
 #define global swbreak      %tswitch goto *%p1
-#define global swcontinue   %tswitch goto *%p2					// 再分岐 (比較値を更新)
-#define global swredo       %tswitch goto *%p3					// 再分岐 (比較値は同じ)
-#define global go_case(%1)  %tswitch %p = (%1) : swredo			// 比較値を変更して再分岐
-#define global go_default   %tswitch goto swdefault_label		// default があればそこに、なければ swend に飛ぶ
+#define global swcontinue   %tswitch goto *%p2 //比較値を更新して再分岐
+#define global swredo       %tswitch goto *%p3 //比較値をそのままに再分岐
+#define global go_case(%1)  %tswitch %p = (%1) : swredo //比較値を上書きして再分岐
+#define global go_default   %tswitch goto swdefault_label // default があればそこに、なければ swend に飛ぶ
 
 #define global xcase    swbreak : case
 #define global xdefault swbreak : default
 
-// swthis を、switch とは別のスタックにも設定しておく
-// %p: 比較元の値を持つ変数 (switchから与えられる)
-#define global ctype swthis_bgn(%1) %tswitch_this %s1
-#define global swthis     %tswitch_this %p
-#define global swthis_end %tswitch_this %o0
+/**
+* swthis
+* switch の比較元の値を保存した変数に展開される。
+* case_if などで使う。
+*/
+#define global swthis               %tswitch_this  %p
+#define global ctype swthis_bgn(%1) %tswitch_this  %s1
+#define global swthis_end           %tswitch_this  %o0
 
-// default 用のラベルスタック (かなり複雑)
-// 生成する2つのユニーク識別子を A, B とする。
-// 最初、A, B, A の順にスタックに積まれる ({ %p: A, %p1: B, %p2: A })。
-// @ %p2 の A は swdefault_label で参照するため。
-// default があるとき:
-// @	1. A が default に配置・除去される。B がスタック上に積まれる ({ %p: B, %p1: B, %p2: A })。
-// @	2. 一番上の B が swend に配置される。残り2つはそのまま取り除かれる。
-// default がないとき: 
-// @	1. 一番上の A が swend に配置される。残り2つはそのまま取り除かれる。
-// ∴A (swdefault_label) は default があるとき default を、ないときは swend (エラー部分) を指す。
+/**
+* swdefault_label
+* default 節へのラベル、なければ swend へのラベル
+*/
+/*
+実装メモ
+
+default 用のラベルスタック (かなり複雑)
+生成する2つのユニーク識別子を A, B とする。
+最初、A, B, A の順にスタックに積まれる ({ %p: A, %p1: B, %p2: A })。
+default があるとき:
+	1. A が default に配置、除去される。B がスタック上に積まれる ({ %p: B, %p1: B, %p2: A })。
+	2. 一番上の B が swend に配置される。残り2つはそのまま取り除かれる。
+default がないとき: 
+	1. 一番上の A が swend に配置される。残り2つはそのまま取り除かれる。
+いずれにせよ A (swdefault_label) は default があるとき default を、ないときは swend (エラー部分) を指す。
+//*/
 #define global swdefault_init          %tswitch_default %i0 %i0 swdefault_push(%p1)		// [ A, B, A ] を積む
 #define global swdefault_term          %tswitch_default %o0 %o0 %o0
 #define global swdefault_place_default %tswitch_default *%o : swdefault_push(%p)		// A を配置して除去, B を doubling-push
-#define global swdefault_place_swend   %tswitch_default do_not { *%p : logmes@hsp "go_default error: default doesn't exist.\n\t" + __HERE__ : assert@hsp }
+#ifdef _DEBUG
+ #define global swdefault_place_swend  %tswitch_default if (0) { *%p : logmes@hsp "go_default error: default doesn't exist.\n\t" + __HERE__ : assert@hsp }
+#else
+ #define global swdefault_place_swend  :
+#endif
 #define global swdefault_label         %tswitch_default *%p2
 
 #define global ctype swdefault_push(%1) %tswitch_default %s1
