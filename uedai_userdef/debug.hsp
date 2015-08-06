@@ -100,7 +100,7 @@ varTypeName
 %*/
 #defcfunc varTypeName int type,  local name, local hvpPtr, local hvp, local prms
 	prms = type
-	hvpPtr = callfunc(prms, exinfoAt(25), 1) //HspFunc_getproc
+	hvpPtr = callfunc(prms, exinfo_at@__debug(25), 1) //HspFunc_getproc
 	if ( hvpPtr != 0 ) {
 		dupptr hvp, hvpPtr, 20
 		if ( hvp(3) != 0 ) {
@@ -111,7 +111,7 @@ varTypeName
 	assert
 	return ""
 	
-#defcfunc exinfoAt int idx,  local ctx, local exinfo
+#defcfunc exinfo_at@__debug int idx,  local ctx, local exinfo
 	mref ctx, 68
 	dupptr exinfo, varptr(ctx(12)), 188
 	return exinfo(idx)
@@ -133,7 +133,7 @@ varTypeName
 #define global LogEcho_File   0x002
 #define global LogEcho_All    0xFFF
 
-#deffunc debug_mod_init
+#deffunc init@__debug
 	stt_logPath  = Dir_LogFilePath
 	stt_logIndex = 0
 	stt_logMode  = LogMode_Default
@@ -284,9 +284,9 @@ dbgchk_T
 
 T ÇÕÅAexpr Ç™ str å^Ç»ÇÁ sÅAint å^Ç»ÇÁ iÅAdouble å^Ç»ÇÁ dÅB
 %*/
-#define global ctype dbgchk_s(%1, %2) dbgchkImpl_s(dbgchkSet_s(%1), %2, {"%1"}, {"%2"}, __HERE__)
-#define global ctype dbgchk_d(%1, %2) dbgchkImpl_d(dbgchkSet_d(%1), %2, {"%1"}, {"%2"}, __HERE__)
-#define global ctype dbgchk_i(%1, %2) dbgchkImpl_i(dbgchkSet_i(%1), %2, {"%1"}, {"%2"}, __HERE__)
+#define global ctype dbgchk_s(%1, %2) dbgchkImpl_s(dbgchkSet_s@__debug(%1), %2, {"%1"}, {"%2"}, __HERE__)
+#define global ctype dbgchk_d(%1, %2) dbgchkImpl_d(dbgchkSet_d@__debug(%1), %2, {"%1"}, {"%2"}, __HERE__)
+#define global ctype dbgchk_i(%1, %2) dbgchkImpl_i(dbgchkSet_i@__debug(%1), %2, {"%1"}, {"%2"}, __HERE__)
 
 #define ctype FTM_dbgchkImpl(%1) \
 	if ( b == 0 ) { \
@@ -296,11 +296,11 @@ T ÇÕÅAexpr Ç™ str å^Ç»ÇÁ sÅAint å^Ç»ÇÁ iÅAdouble å^Ç»ÇÁ dÅB
 
 #define global dbgchkValue stt_dbgchkValue@__debug
 
-#defcfunc dbgchkSet_s str x
+#defcfunc dbgchkSet_s@__debug str x
 	dbgchkValue = x : return x
-#defcfunc dbgchkSet_d double x
+#defcfunc dbgchkSet_d@__debug double x
 	dbgchkValue = x : return x
-#defcfunc dbgchkSet_i int x
+#defcfunc dbgchkSet_i@__debug int x
 	dbgchkValue = x : return x
 	
 #defcfunc dbgchkImpl_s str x, int b, str code_value, str code_condition, str there
@@ -314,7 +314,7 @@ T ÇÕÅAexpr Ç™ str å^Ç»ÇÁ sÅAint å^Ç»ÇÁ iÅAdouble å^Ç»ÇÁ dÅB
 
 #global
 
-	debug_mod_init
+	init@__debug
 
 #else
 
