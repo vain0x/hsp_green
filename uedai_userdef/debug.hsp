@@ -93,12 +93,12 @@ assert の一種。default 節など、分岐の流れから絶対に実行されないところに書く。
 
 /*
 %index
-varTypeName
+var_type_name
 型タイプ値から型名を取得する
 %prm
 (type_index)
 %*/
-#defcfunc varTypeName int type,  local name, local hvpPtr, local hvp, local prms
+#defcfunc var_type_name int type,  local name, local hvpPtr, local hvp, local prms
 	prms = type
 	hvpPtr = callfunc(prms, exinfo_at@__debug(25), 1) //HspFunc_getproc
 	if ( hvpPtr != 0 ) {
@@ -236,7 +236,7 @@ v [, log_level, there]
 			swbreak
 			
 		default:
-			logmes@__debug strf("%s: type %s", varname, varTypeName(vartype(value))), level, there
+			logmes@__debug strf("%s: type %s", varname, var_type_name(vartype(value))), level, there
 			swbreak
 	swend
 	return
@@ -321,7 +321,7 @@ T は、expr が str 型なら s、int 型なら i、double 型なら d。
 #define global logmes(%1 = "", %2 = 0, %3 = "", %4 = 0) :
 ;#define global assert(%1 = 0) :
 
-#define global ctype varTypeName(%1) ""
+#define global ctype var_type_name(%1) ""
 #define global logmode(%1 = 0) :
 #define global loglev(%1 = 0) :
 #define global logvar(%1) :
