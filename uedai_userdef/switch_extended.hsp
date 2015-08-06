@@ -1,6 +1,67 @@
 #ifndef        IG_UEDAI_SWITCH_EXTENDED_HSP
 #define global IG_UEDAI_SWITCH_EXTENDED_HSP
 
+/*
+%dll
+uedai_userdef/switch_extended.hsp
+%group
+プログラム制御マクロ
+%*/
+/*
+%index
+case_if
+比較式指定
+%prm
+cond
+%inst
+switch-swend ブロックのなかで、条件 cond が真であるときに実行される処理を指定する。
+if 文と似ているが、この条件式は比較元の値 swthis を使うべきである。
+%*/
+/*
+%index
+swcontinue
+比較ブロックをやり直す (更新あり)
+%inst
+switch 文の先頭に戻る。比較元の値は再評価される。
+%*/
+/*
+%index
+swredo
+比較ブロックをやり直す (更新なし)
+%inst
+switch 文の先頭に戻る。比較元の値は最初に switch 文が実行されたときのまま戻るが、別の case 節に入る可能性もある。
+%*/
+/*
+%index
+go_case
+case 節に移動する
+%prm
+val
+%inst
+現在の switch 文の、値 val に対応する case 節に移動する。
+実際には、比較元の値を val に変更してから、swredo する。
+%*/
+/*
+%index
+go_default
+default 節に移動する
+%inst
+現在の switch 文の default 節に移動する。
+もし case 節がすべての値を網羅していたとしても、default 節に入る。
+default 節がない場合は swend に移動する。デバッグモードなら実行時エラーになる。
+%*/
+/*
+%index
+swthis
+switch 文の比較元の値
+%inst
+現在の switch 文の比較元の値を使用する。
+case_if 文の
+現在の switch 文の default 節に移動する。
+もし case 節がすべての値を網羅していたとしても、default 節に入る。
+default 節がない場合は swend に移動する。デバッグモードなら実行時エラーになる。
+%*/
+
 #undef switch
 #undef case
 #undef default
@@ -24,11 +85,12 @@
 #define global case_if(%1)  %tswitch %i0 goto *%p } if ( (%1) ) { *%o
 #define global default      %tswitch } swdefault_place_default : if (1) {
 #define global swend        %tswitch } swdefault_place_swend : %o0 *%o %o0 %o0 : swthis_end swdefault_term
+
 #define global swbreak      %tswitch goto *%p1
-#define global swcontinue   %tswitch goto *%p2 //比較値を更新して再分岐
-#define global swredo       %tswitch goto *%p3 //比較値をそのままに再分岐
-#define global go_case(%1)  %tswitch %p = (%1) : swredo //比較値を上書きして再分岐
-#define global go_default   %tswitch goto swdefault_label // default があればそこに、なければ swend に飛ぶ
+#define global swcontinue   %tswitch goto *%p2
+#define global swredo       %tswitch goto *%p3
+#define global go_case(%1)  %tswitch %p = (%1) : swredo
+#define global go_default   %tswitch goto swdefault_label
 
 #define global xcase    swbreak : case
 #define global xdefault swbreak : default
