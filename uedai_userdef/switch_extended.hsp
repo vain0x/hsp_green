@@ -15,7 +15,7 @@
 * %p2: switch の先頭へのラベル (for swcontinue)
 * %p3: switch の先頭へのラベル (for swredo)
 */
-#define global switch(%1 = true) %tswitch \
+#define global switch(%1 = 1) %tswitch \
 	%i0 %i0 %i0 %i0  swthis_bgn(%p)  swdefault_init \
 	: *%p2 : %p = (%1) : *%p3 : if (0) {
 
@@ -33,19 +33,10 @@
 #define global xcase    swbreak : case
 #define global xdefault swbreak : default
 
-/**
-* swthis
-* switch の比較元の値を保存した変数に展開される。
-* case_if などで使う。
-*/
 #define global swthis               %tswitch_this  %p
 #define global ctype swthis_bgn(%1) %tswitch_this  %s1
 #define global swthis_end           %tswitch_this  %o0
 
-/**
-* swdefault_label
-* default 節へのラベル、なければ swend へのラベル
-*/
 /*
 実装メモ
 
@@ -65,10 +56,11 @@ default がないとき:
 #ifdef _DEBUG
  #define global swdefault_place_swend  %tswitch_default if (0) { *%p : logmes@hsp "go_default error: default doesn't exist.\n\t" + __HERE__ : assert@hsp }
 #else
- #define global swdefault_place_swend  :
+ #define global swdefault_place_swend  %tswitch_default : *%p :
 #endif
-#define global swdefault_label         %tswitch_default *%p2
-
 #define global ctype swdefault_push(%1) %tswitch_default %s1
+
+//default 節へのラベル、なければ swend へのラベル
+#define global swdefault_label         %tswitch_default *%p2
 
 #endif
