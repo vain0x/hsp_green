@@ -1,7 +1,13 @@
-// デバッグ支援モジュール
-
 #ifndef IG_UEDAI_DEBUG_HSP
 #define IG_UEDAI_DEBUG_HSP
+
+/*
+%dll
+uedai_userdef/debug.hsp
+
+%group
+デバッグ支援
+%*/
 
 #undef logmes
 ;#undef assert
@@ -15,47 +21,83 @@
 #uselib "winmm.dll"
 #cfunc timeGetTime "timeGetTime"
 
-//------------------------------------------------
-// 未初期化警告を抑制
-//------------------------------------------------
+/*
+%index
+declvar
+変数を初期化済みとして宣言する
+%*/
 #define global declvar(%1) if (0) { dim %1 }
 
-//------------------------------------------------
-// スクリプトの位置を表す文字列
-//------------------------------------------------
+/*
+%index
+__HERE__
+スクリプト位置の文字列リテラル
+%*/
 #define global __HERE__ ("#" + __LINE__ + " " + __FILE__)
 
-//------------------------------------------------
-// 式とその値を表す文字列
-//------------------------------------------------
+/*
+%index
+dbgstr
+式とその値の文字列
+%prm
+(expr)
+%*/
 #define global ctype dbgstr(%1) ({"%1 = "} + (%1))
+
+/*
+%index
+dbgpair
+式のペアとその値の文字列
+%prm
+(expr_lhs, expr_rhs)
+%*/
 #define global ctype dbgpair(%1, %2) ({"(%1,%2) = ("} + (%1) + ", " + (%2) + ")")
 
-//------------------------------------------------
-// 数値を16進数として文字列化する
-//------------------------------------------------
+/*
+%index
+dbghex
+式とその数値(16進数表記)の文字列
+%prm
+(expr_int)
+%*/
 #define global ctype dbghex(%1)  strf({"%1 = 0x%%08X"}, (%1))
 
-//------------------------------------------------
-// 数値をASCII文字1つとして文字列化する
-//------------------------------------------------
+/*
+%index
+dbgchar
+式とその文字の文字列
+%prm
+(expr_char)
+%*/
 #define global ctype dbgchar(%1) strf({"%1 = '%%c'"}, (%1))
 
-//------------------------------------------------
-// デバッグ時とリリース時で数式を分ける
-//
-// dbgcode(D, R) は、デバッグ時は D に、リリース時は R になる。
-//------------------------------------------------
+/*
+%index
+dbgcode
+デバッグ時か否かの条件演算式
+%prm
+(x_debug, x_release)
+%inst
+デバッグ時は x_debug に、リリース時は x_release に展開される。
+%*/
 #define global ctype dbgcode(%1, %2) (%1)
- 
-//------------------------------------------------
-// 絶対に実行されないはずの命令
-//------------------------------------------------
+
+/*
+%index
+assert_sentinel
+絶対に実行されないことを言明
+%inst
+assert の一種。default 節など、分岐の流れから絶対に実行されないところに書く。
+*/
 #define global assert_sentinel logerr "assert sentinel", __HERE__ : assert : end 1
 
-//----------------------------------------------------------
-// 指定した変数の型タイプの型名を取得する
-//----------------------------------------------------------
+/*
+%index
+varTypeName
+型タイプ値から型名を取得する
+%prm
+(type_index)
+%*/
 #defcfunc varTypeName int type,  local name, local hvpPtr, local hvp, local prms
 	prms = type
 	hvpPtr = callfunc(prms, exinfoAt(25), 1) //HspFunc_getproc
@@ -101,9 +143,15 @@
 	bsave stt_logPath, stt_logStr, 0 // 上書きして前のデータを削除
 	return
 	
-//------------------------------------------------
-// ログを出力
-//------------------------------------------------
+/*
+%index
+logmes@__debug
+ログ出力
+%prm
+msg [, log_level, there]
+%inst
+デバッグウィンドウ、およびログファイルにメッセージ msg を追記する。
+%*/
 #define global logmes(%1 = "", %2 = LogLevel_Default, %3 = __HERE__) logmes@__debug str(%1), (%2), (%3)
 #deffunc logmes@__debug str msg,  int level, str there,  local len
 	if ( level < stt_logLevel ) { return }
@@ -137,12 +185,35 @@
 	}
 	return
 	
+/*
+%index
+logwarn
+ログ出力 (警告)
+%prm
+msg
+%*/
 #define global logwarn(%1 = "", %2 = __HERE__) logmes@__debug (%1), LogLevel_Warn, (%2)
+
+/*
+%index
+logerr
+ログ出力 (エラー)
+%prm
+msg
+%inst
+LogLevel_Error でログ出力(logmes@__debug)し、エラー終了する。
+%*/
 #define global logerr(%1 = "", %2 = __HERE__) logmes@__debug (%1), LogLevel_Error, (%2)
 
-//------------------------------------------------
-// 変数の内容をログに出力
-//------------------------------------------------
+/*
+%index
+logvar
+変数をログ出力
+%prm
+v [, log_level, there]
+%inst
+変数とその名前を logmes@__debug する。通常の文字列化(str)よりも詳しく、かつ見やすく出力される。
+%*/
 #define global logvar(%1, %2 = LogLevel_Default, %3 = __HERE__) logvar@__debug (%1), {"%1"}, (%2), (%3), (%4)
 #deffunc logvar@__debug var value, str _varname,  int level, str there,  local varname
 	varname = _varname : varname = strtrim(varname)
@@ -169,10 +240,14 @@
 			swbreak
 	swend
 	return
-	
-//------------------------------------------------
-// logmes の出力形式を変更する
-//------------------------------------------------
+
+/*
+%index
+logmode
+logmes@__debug の出力形式を指定する
+%prm
+mode
+%*/
 #deffunc logmode int mode
 	if ( stt_logMode != mode ) {
 		logmes@__debug "log mode has changed: " + stt_logMode + " -> " + mode + ".", LogLevel_Notice, "DEBUG"
@@ -180,22 +255,35 @@
 	}
 	return
 	
-//------------------------------------------------
-// logmes メッセージの送信先
-//------------------------------------------------
+/*
+%index
+logecho
+logmes@__debug の送信先を指定する
+%prm
+flags
+%inst
+次の2つのビットフラグの組み合わせで指定する。
+LogEcho_DbgWnd: デバッグウィンドウ
+LogEcho_File: ログファイル
+%*/
 #deffunc logecho int flags
 	stt_logEcho = flags
 	return
 	
-//------------------------------------------------
-// 言明つきの式
-// dbgchk_T (value, cond)
-//
-// 値 value に関する条件 cond をチェックして、この関数は value を返す。
-// cond が成立していなければ、警告を出力する。
-// 式 cond の中で、value はシステム変数 dbgchkValue で参照できる。
-// T は、value が str 型なら s、int 型なら i、double 型なら d。
-//------------------------------------------------
+/*
+%index
+dbgchk_T
+言明つきの式
+%prm
+(expr, cond)
+%inst
+式 expr の値に関する条件 cond をチェックする。expr を返す。
+もし cond が不成立なら、警告を出力する(logwarn)。
+
+式 cond のなかでは、システム変数 dbgchkValue = expr が使用できる。
+
+T は、expr が str 型なら s、int 型なら i、double 型なら d。
+%*/
 #define global ctype dbgchk_s(%1, %2) dbgchkImpl_s(dbgchkSet_s(%1), %2, {"%1"}, {"%2"}, __HERE__)
 #define global ctype dbgchk_d(%1, %2) dbgchkImpl_d(dbgchkSet_d(%1), %2, {"%1"}, {"%2"}, __HERE__)
 #define global ctype dbgchk_i(%1, %2) dbgchkImpl_i(dbgchkSet_i(%1), %2, {"%1"}, {"%2"}, __HERE__)
