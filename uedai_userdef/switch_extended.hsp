@@ -81,7 +81,6 @@ default 節がない場合は swend に移動する。デバッグモードなら実行時エラーになる。
 	: *%p2 : %p = (%1) : *%p3 : if (0) {
 
 #define global case(%1)     %tswitch %i0 goto *%p } if ( (%p1) == (%1) ) { *%o
-#define global case_not(%1) %tswitch %i0 goto *%p } if ( (%p1) != (%1) ) { *%o
 #define global case_if(%1)  %tswitch %i0 goto *%p } if ( (%1) ) { *%o
 #define global default      %tswitch } swdefault_place_default : if (1) {
 #define global swend        %tswitch } swdefault_place_swend : %o0 *%o %o0 %o0 : swthis_end swdefault_term
