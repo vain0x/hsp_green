@@ -13,6 +13,13 @@
 #define global noteadd_add 0
 #define global noteadd_overwrite 1
 
+#define global dirlist_all 0
+#define global dirlist_files 1
+#define global dirlist_all_but_hidden_nor_sys 2
+#define global dirlist_files_but_hidden_nor_sys 3
+#define global dirlist_dirs 5
+#define global dirlist_dirs_and_hidden_or_sys_files 7
+
 #define global getpath_filename 1
 #define global getpath_ext 2
 #define global getpath_exclude_dir 8
