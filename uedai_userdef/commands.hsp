@@ -135,4 +135,6 @@
 	return
 #global
 
+#define global ginfo_rgb RGB(ginfo_r, ginfo_g, ginfo_b)
+
 #endif
