@@ -14,4 +14,11 @@
 
 #define global ctype _unique_ident(%1 = _empty) %tuedai_uqid _cat(%n,%1)
 
+#define global ctype _replicate2(%1 = _empty)%1%1
+#define global ctype _replicate3(%1 = _empty)_replicate2(%1)%1
+#define global ctype _replicate4(%1 = _empty)_replicate3(%1)%1
+#define global ctype _replicate5(%1 = _empty)_replicate4(%1)%1
+#define global ctype _replicate6(%1 = _empty)_replicate5(%1)%1
+#define global ctype _replicate7(%1 = _empty)_replicate6(%1)%1
+
 #endif
