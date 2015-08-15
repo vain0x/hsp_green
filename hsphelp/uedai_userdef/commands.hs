@@ -260,3 +260,15 @@ ginfo_rgb
 %prm
 
 return: RGB(ginfo_r, ginfo_g, ginfo_b)
+
+
+
+%index
+dir_exists
+ディレクトリが存在するか？
+%prm
+(dir)
+dir: ディレクトリへのパス
+return: dir が存在すれば true、しなければ false
+%href
+dirlist

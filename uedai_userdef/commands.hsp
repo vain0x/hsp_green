@@ -150,4 +150,11 @@
 	return
 #global
 
+
+#module
+#defcfunc dir_exists str path,  local dummy
+	dirlist dummy, path, 5
+	return (stat > 0)
+#global
+
 #endif
