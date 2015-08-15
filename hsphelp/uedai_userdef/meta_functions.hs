@@ -51,3 +51,15 @@ _comma
 %index
 _colon
 コロン (:)
+
+
+
+%index
+_unique_ident
+匿名識別子
+%prm
+([postfix])
+postfix [_empty]: 接尾辞
+return: 一意な識別子に、postfix を連結したもの
+%inst
+特殊展開マクロ %n の一般化。
