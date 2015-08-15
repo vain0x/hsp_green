@@ -58,6 +58,11 @@
 #define global dialog_color 32
 #define global dialog_colorex 33
 
+#define global dialog_stat_cancel 0
+#define global dialog_stat_ok     1
+#define global dialog_stat_yes    6
+#define global dialog_stat_no     7
+
 #define global hsptv_up_clearscore 0x1000
 #define global hsptv_up_anonymous 0x2000
 
