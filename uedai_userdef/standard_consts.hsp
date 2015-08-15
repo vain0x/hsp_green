@@ -26,6 +26,7 @@
 #define global getpath_tolower 16
 #define global getpath_dir 32
 
+#define global ctype strtrim_ends(%1, %2 = _empty) strtrim(%1, 0, %2)
 #define global ctype strtrim_head(%1, %2 = _empty) strtrim(%1, 1, %2)
 #define global ctype strtrim_tail(%1, %2 = _empty) strtrim(%1, 2, %2)
 #define global ctype strtrim_everywhere(%1, %2 = _empty) strtrim(%1, 3, %3)
