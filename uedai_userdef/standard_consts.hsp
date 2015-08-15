@@ -30,10 +30,10 @@
 #define global strtrim_tail 2
 #define global strtrim_everywhere 3
 
-#define global gsel_hide (-1)
-#define global gsel_none 0
-#define global gsel_show 1
-#define global gsel_topmost 2
+#define global gsel_hide(%1 = _empty) gsel %1, (-1)
+#define global gsel_none(%1 = _empty) gsel %1 /*, 0*/
+#define global gsel_show(%1 = _empty) gsel %1, 1
+#define global gsel_topmost(%1 = _empty) gsel %1, 2
 
 #define global redraw_off 0
 #define global redraw_on 1
