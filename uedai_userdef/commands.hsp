@@ -36,50 +36,8 @@
 
 #define global elsif else : if
 
-#module
-//gradf の、位置と大きさを指定するバージョン。
-#deffunc gradf2 int x1, int y1, int sx, int sy, int mode, int rgb1, int rgb2
-	gradf@hsp x1, y1, sx - x1, sy - y1, mode, rgb1, rgb2
-	return
-#global
-
-//マウスカーソルがウィンドウの外にあるときも、正しい座標を返す。
-#define global mousex2 (ginfo_mx - (ginfo_wx1 + (ginfo_sizex - ginfo_winx) / 2))
-#define global mousey2 (ginfo_my - (ginfo_wy1 + (ginfo_sizey - ginfo_winy) - (ginfo_sizex - ginfo_winx) / 2))
-
-//実行されたスクリプトファイルまたは exe ファイルのディレクトリを指す。
-#ifdef _DEBUG
- #define global dir_exe2 dir_exe2@__uedai
-	dir_exe2 = dir_cur
-#else //defined(_DEBUG)
- #define global dir_exe2 dir_exe
-#endif //defined(_DEBUG)
-
-//ファイルを削除する
-#define global delfile delete
-
-#module
-//ファイルをあれば削除する
-#deffunc delfile_if_exists str path
-	exist path
-	if ( strsize >= 0 ) { delfile path }
-	return
-#global
-
 //関数を実行し、その返値を無視する。
 #define global ignore(%1) __ignored_result@__uedai = (%1)
-
-#module
-//点が半区間上にあること
-#defcfunc in_interval int x, int first, int last
-	return (first <= x && x < last)
-#global
-
-#module
-//点が矩形上にあること
-#defcfunc in_rect int px, int py, int x1, int y1, int x2, int y2
-	return (x1 <= px && px <= x2) && (y1 <= py && py <= y2)
-#global
 
 //大きいほう、小さいほうを返す関数
 #module
@@ -125,6 +83,29 @@
 	if (cond) { return x } else { return y }
 #global
 
+#module
+//点が半区間上にあること
+#defcfunc in_interval int x, int first, int last
+	return (first <= x && x < last)
+#global
+
+#module
+//点が矩形上にあること
+#defcfunc in_rect int px, int py, int x1, int y1, int x2, int y2
+	return (x1 <= px && px <= x2) && (y1 <= py && py <= y2)
+#global
+
+//マウスカーソルがウィンドウの外にあるときも、正しい座標を返す。
+#define global mousex2 (ginfo_mx - (ginfo_wx1 + (ginfo_sizex - ginfo_winx) / 2))
+#define global mousey2 (ginfo_my - (ginfo_wy1 + (ginfo_sizey - ginfo_winy) - (ginfo_sizex - ginfo_winx) / 2))
+
+#module
+//gradf の、位置と大きさを指定するバージョン。
+#deffunc gradf2 int x1, int y1, int sx, int sy, int mode, int rgb1, int rgb2
+	gradf@hsp x1, y1, sx - x1, sy - y1, mode, rgb1, rgb2
+	return
+#global
+
 //COLORREF値
 #define global ctype RGB(%1 = 0, %2 = 0, %3 = 0) \
 	MAKELONG4((%1), (%2), (%3), 0)
@@ -136,5 +117,24 @@
 #global
 
 #define global ginfo_rgb RGB(ginfo_r, ginfo_g, ginfo_b)
+
+//実行されたスクリプトファイルまたは exe ファイルのディレクトリを指す。
+#ifdef _DEBUG
+ #define global dir_exe2 dir_exe2@__uedai
+	dir_exe2 = dir_cur
+#else //defined(_DEBUG)
+ #define global dir_exe2 dir_exe
+#endif //defined(_DEBUG)
+
+//ファイルを削除する
+#define global delfile delete
+
+#module
+//ファイルをあれば削除する
+#deffunc delfile_if_exists str path
+	exist path
+	if ( strsize >= 0 ) { delfile path }
+	return
+#global
 
 #endif
