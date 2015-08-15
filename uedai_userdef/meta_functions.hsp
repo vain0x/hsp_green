@@ -1,70 +1,14 @@
 #ifndef        IG_UEDAI_META_FUNCTIONS_HSP
 #define global IG_UEDAI_META_FUNCTIONS_HSP
 
-/*
-%dll
-uedai_userdef/meta_functions.hsp
-
-%group
-メタ関数
-%*/
-
-/*
-%index
-_empty
-空のスクリプト
-%inst
-%*/
 #define global _empty// empty
-
-/*
-%index
-_rm
-空のスクリプト (括弧つき)
-%prm
-(ignored)
-%inst
-パラメータごと消去され、空のスクリプトに展開される。
-%*/
 #define global ctype _rm(%1)/*%1*/
 
-/*
-%index
-_cat
-識別子の連結
-%prm
-(i1, i2)
-%inst
-識別子 i1, i2 をこの順で連結した識別子に展開される。
-スペースがあると失敗する。
-%*/
 #define global ctype _cat(%1,%2)%1%2
 #define global ctype _cat3(%1,%2,%3)%1%2%3
-
-/*
-%index
-_cat_scope
-識別子とスコープ解決の連結
-%prm
-(ident, scope)
-%inst
-識別子 ident にスコープ scope をつけて、識別子 ident@scope に展開される。
-スペースがあると失敗する。
-%*/
 #define global ctype _cat_scope(%1,%2)_cat3(%1,@,%2)
 
-/*
-%index
-_comma
-カンマ (,)
-%*/
 #define global _comma ,
-
-/*
-%index
-_colon
-コロン (:)
-%*/
 #define global _colon :
 
 #endif
