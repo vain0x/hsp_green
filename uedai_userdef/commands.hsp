@@ -157,4 +157,12 @@
 	return (stat > 0)
 #global
 
+
+#module
+#deffunc mkdir_unless_exists str path,  local dummy
+	dirlist dummy, path, 5
+	if ( stat == 0 ) { mkdir path }
+	return
+#global
+
 #endif

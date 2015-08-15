@@ -272,3 +272,16 @@ dir: ディレクトリへのパス
 return: dir が存在すれば true、しなければ false
 %href
 dirlist
+
+
+
+%index
+mkdir_unless_exists
+ディレクトリを作る (既存なら何もしない)
+%prm
+dir
+dir: 作成するディレクトリ
+%inst
+mkdir 命令と同様。ただし、dir がすでにある場合は何も起きない。
+%href
+dir_exists
