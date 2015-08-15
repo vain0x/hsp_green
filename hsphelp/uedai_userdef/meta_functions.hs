@@ -63,3 +63,18 @@ postfix [_empty]: 接尾辞
 return: 一意な識別子に、postfix を連結したもの
 %inst
 特殊展開マクロ %n の一般化。
+
+
+
+%index
+_stringify
+式の文字列リテラル化
+%prm
+(code)
+code: スクリプト断片
+return: code を文字列リテラルにしたもの
+%inst
+注意：
+1. code のなかで {"..."} は使えない。
+2. code のなかの剰余演算子 \\ がエスケープ・シーケンスとして働いてしまう。
+3. code のなかのマクロは展開されない。

@@ -3,6 +3,7 @@
 
 #define global _empty// empty
 #define global ctype _rm(%1)/*%1*/
+#define global ctype _stringify(%1) {"%1"}
 
 #define global ctype _cat(%1,%2)%1%2
 #define global ctype _cat3(%1,%2,%3)%1%2%3
