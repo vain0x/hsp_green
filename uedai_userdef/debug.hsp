@@ -20,6 +20,7 @@
 #define global ctype dbghex(%1)  strf({"%1 = 0x%%08X"}, (%1))
 #define global ctype dbgchar(%1) strf({"%1 = '%%c'"}, (%1))
 #define global ctype dbgcode(%1, %2) (%1)
+#define global assert_sentinel logerr "assert sentinel", __HERE__ : assert : end 1
 
 #defcfunc var_type_name int type,  local name, local hvpPtr, local hvp, local prms
 	prms = type
