@@ -24,23 +24,6 @@ else
 
 
 %index
-gradf2
-矩形をグラデーションで塗りつぶす
-%prm
-x1, y1, sx, sy, mode, rgb1, rgb2
-x1: 矩形の左上X座標
-x1: 矩形の左上Y座標
-sx: 矩形のXサイズ
-sy: 矩形のYサイズ
-mode: グラデーションのモード
-rgb1: 最初の色
-rgb2: 最後の色
-%inst
-gradf 命令に、boxf 命令と似た形式のパラメータを渡せるようにしたもの。
-
-
-
-%index
 mousex2
 マウスカーソルのX座標
 %inst

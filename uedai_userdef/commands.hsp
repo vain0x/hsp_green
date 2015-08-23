@@ -111,13 +111,6 @@
 	(ginfo_my - (ginfo_wy1 + (ginfo_sizey - ginfo_winy) - (ginfo_sizex - ginfo_winx) / 2))
 
 
-#module
-#deffunc gradf2 int x1, int y1, int sx, int sy, int mode, int rgb1, int rgb2
-	gradf@hsp x1, y1, sx - x1, sy - y1, mode, rgb1, rgb2
-	return
-#global
-
-
 #define global ctype RGB(%1 = 0, %2 = 0, %3 = 0) \
 	MAKELONG4((%1), (%2), (%3), 0)
 
