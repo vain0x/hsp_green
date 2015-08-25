@@ -12,4 +12,13 @@
 #define ctype ctype
 #undef  ctype
 
+#define var
+#undef  var
+
+#define array
+#undef  array
+
+#define local
+#undef  local
+
 #endif
