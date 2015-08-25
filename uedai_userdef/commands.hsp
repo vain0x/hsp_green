@@ -108,6 +108,34 @@
 
 
 #module
+#define global ctype ref_xs(%1) \
+	ref_expr_tmpl_1(ref_xs__@__ref, %1)
+	
+#defcfunc ref_xs__@__ref str value, array ref
+	ref = value
+	return 0
+#global
+
+#module
+#define global ctype ref_xd(%1) \
+	ref_expr_tmpl_1(ref_xd__@__ref, %1)
+	
+#defcfunc ref_xd__@__ref double value, array ref
+	ref = value
+	return 0
+#global
+
+#module
+#define global ctype ref_xi(%1) \
+	ref_expr_tmpl_1(ref_xi__@__ref, %1)
+
+#defcfunc ref_xi__@__ref int value, array ref
+	ref = value
+	return 0
+#global
+
+
+#module
 #defcfunc in_interval int x, int first, int last
 	return (first <= x && x < last)
 #global

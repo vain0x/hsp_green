@@ -256,6 +256,50 @@ ref_expr_tmpl_1 を参照。
 
 
 %index
+ref_xs
+文字列値の参照
+%prm
+(value)
+str value: 渡す文字列
+return: value が代入された変数
+%inst
+文字列型の「変数」を受け取る引数に、文字列の「値」 value を渡すときに使う。
+
+この関数は、あくまで変数を受け取る引数にだけ使用できる。この関数が返す「値」を使用してはいけない。
+再帰関数のなかなど、これを書いた式が再帰的に呼び出されることがある場合は、使用できない。
+%href
+ref_xd
+ref_xi
+ref_expr_tmpl_1
+
+
+
+%index
+ref_xd
+小数値の参照
+%prm
+(value)
+double value: 渡す小数値
+return: value が代入された変数
+%inst
+ref_xs の double 版。
+
+
+
+%index
+ref_xi
+整数値の参照
+%prm
+(value)
+int value: 渡す整数値
+return: value が代入された変数
+%inst
+ref_xs の int 版。
+
+
+
+
+%index
 RGB
 輝度からカラーコードを作る
 %prm
