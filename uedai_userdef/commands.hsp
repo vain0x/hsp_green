@@ -91,6 +91,22 @@
 #global
 
 
+#define global ctype ref_expr_tmpl_1(%1, %2 = _empty) %t__ref \
+	_cat(%i,@__ref)( %1(%2,_cat(%o,@__ref)) )
+	
+#define global ctype ref_expr_tmpl_2(%1, %2 = _empty, %3 = _empty) %t__ref \
+	_cat(%i,@__ref)( %1(%2,_cat(%o,@__ref),%3) )
+	
+#define global ctype ref_expr_tmpl_3(%1, %2 = _empty, %3 = _empty, %4 = _empty) %t__ref \
+	_cat(%i,@__ref)( %1(%2,_cat(%o,@__ref),%3,%4) )
+	
+#define global ctype ref_expr_tmpl_4(%1, %2 = _empty, %3 = _empty, %4 = _empty, %5 = _empty) %t__ref \
+	_cat(%i,@__ref)( %1(%2,_cat(%o,@__ref),%3,%4,%5) )
+
+#define global ctype ref_expr_tmpl_5(%1, %2 = _empty, %3 = _empty, %4 = _empty, %5 = _empty, %6 = _empty) %t__ref \
+	_cat(%i,@__ref)( %1(%2,_cat(%o,@__ref),%3,%4,%5,%6) )
+
+
 #module
 #defcfunc in_interval int x, int first, int last
 	return (first <= x && x < last)

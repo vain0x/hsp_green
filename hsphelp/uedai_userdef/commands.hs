@@ -210,6 +210,52 @@ if
 
 
 %index
+ref_expr_tmpl_1
+参照式の定形 (1引数)
+%prm
+(f, p1)
+f: 参照式の設定を行う関数
+p1: f の第1引数
+%inst
+変数を返す関数を定義するためのテンプレ。
+実際には、「ref(f(p1, ref))」に展開されるマクロ。ただし ref は一意な識別子で表される変数。
+
+関数 f のなかで変数 ref を設定することにより、式 ref_expr_templ_1(...) は擬似的に変数を返却するものとみなせる。
+具体的な使いかたは ref_xs 関数の定義などを参照。
+
+f の引数の数を増やした変種に、ref_expr_tmpl_2, ..., ref_expr_tmpl_5 がある。引数 ref は、常に f の第2引数に渡される。
+
+
+
+%index
+ref_expr_tmpl_2
+参照式の定形 (2引数)
+%prm
+(f, p1, p2)
+%inst
+「ref(f(p1, ref, p2))」に展開されるマクロ。ref_expr_tmpl_1 を参照。
+
+
+
+%index
+ref_expr_tmpl_3
+参照式の定形 (3引数)
+%inst
+ref_expr_tmpl_1 を参照。
+%index
+ref_expr_tmpl_4
+参照式の定形 (4引数)
+%inst
+ref_expr_tmpl_1 を参照。
+%index
+ref_expr_tmpl_5
+参照式の定形 (5引数)
+%inst
+ref_expr_tmpl_1 を参照。
+
+
+
+%index
 RGB
 輝度からカラーコードを作る
 %prm
