@@ -35,3 +35,45 @@ false
 
 %href
 true
+
+
+
+%index
+vartype_label
+label型の型タイプ値
+%inst
+vartype("label") の値
+
+
+
+%index
+vartype_double
+double型の型タイプ値
+%inst
+vartype("double") の値
+
+
+
+%index
+vartype_int
+int型の型タイプ値
+%inst
+vartype("int") の値
+
+
+
+%index
+vartype_struct
+struct型の型タイプ値
+%inst
+vartype("struct") の値
+
+
+
+%index
+vartype_comobj
+comobj型の型タイプ値
+%inst
+vartype("comobj") の値
+
+
