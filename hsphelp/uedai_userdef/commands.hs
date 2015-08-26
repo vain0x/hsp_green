@@ -303,6 +303,17 @@ ref_xs の int 版。
 
 
 
+%index
+ref_xia8
+整数値配列(8要素)の参照
+%prm
+(v0, ..., v7)
+int v0, ..., v7 [0]: 渡す整数値の列
+return: v0, ..., v7 が代入された配列変数
+%inst
+ref_xs の int 版。
+
+
 
 %index
 RGB
