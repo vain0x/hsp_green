@@ -223,7 +223,7 @@ p1: f の第1引数
 関数 f のなかで変数 ref を設定することにより、式 ref_expr_templ_1(...) は擬似的に変数を返却するものとみなせる。
 具体的な使いかたは ref_xs 関数の定義などを参照。
 
-f の引数の数を増やした変種に、ref_expr_tmpl_2, ..., ref_expr_tmpl_5 がある。引数 ref は、常に f の第2引数に渡される。
+f の引数の数を増やした変種に、ref_expr_tmpl_2, ..., ref_expr_tmpl_5, ref_expr_tmpl_8 がある。引数 ref は、常に f の第2引数に渡される。
 
 
 
@@ -250,6 +250,11 @@ ref_expr_tmpl_1 を参照。
 %index
 ref_expr_tmpl_5
 参照式の定形 (5引数)
+%inst
+ref_expr_tmpl_1 を参照。
+%index
+ref_expr_tmpl_8
+参照式の定形 (8引数)
 %inst
 ref_expr_tmpl_1 を参照。
 

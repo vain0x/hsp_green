@@ -106,6 +106,9 @@
 #define global ctype ref_expr_tmpl_5(%1, %2 = _empty, %3 = _empty, %4 = _empty, %5 = _empty, %6 = _empty) %t__ref \
 	_cat(%i,@__ref)( %1(%2,_cat(%o,@__ref),%3,%4,%5,%6) )
 
+#define global ctype ref_expr_tmpl_8(%1, %2 = _empty, %3 = _empty, %4 = _empty, %5 = _empty, %6 = _empty, %7 = _empty, %8 = _empty, %9 = _empty) %t__ref \
+	_cat(%i,@__ref)( %1(%2,_cat(%o,@__ref),%3,%4,%5,%6,%7,%8,%9) )
+
 
 #module
 #define global ctype ref_xs(%1) \
