@@ -311,7 +311,8 @@ ref_xia8
 int v0, ..., v7 [0]: “n‚·®”’l‚Ì—ñ
 return: v0, ..., v7 ‚ª‘ã“ü‚³‚ê‚½”z—ñ•Ï”
 %inst
-ref_xs ‚Ì int ”ÅB
+%href
+ref_xs
 
 
 
