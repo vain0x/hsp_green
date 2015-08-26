@@ -138,6 +138,24 @@
 #global
 
 #module
+#define global ctype ref_xsa8(%1 = "", %2 = "", %3 = "", %4 = "", %5 = "", %6 = "", %7 = "", %8 = "") \
+	ref_expr_tmpl_8(ref_xsa8__@__ref, %1, %2, %3, %4, %5, %6, %7, %8)
+
+#defcfunc ref_xsa8__@__ref str v0, array ref, str v1, str v2, str v3, str v4, str v5, str v6, str v7
+	ref = v0, v1, v2, v3, v4, v5, v6, v7
+	return 0
+#global
+
+#module
+#define global ctype ref_xda8(%1 = 0, %2 = 0, %3 = 0, %4 = 0, %5 = 0, %6 = 0, %7 = 0, %8 = 0) \
+	ref_expr_tmpl_8(ref_xda8__@__ref, %1, %2, %3, %4, %5, %6, %7, %8)
+
+#defcfunc ref_xda8__@__ref double v0, array ref, double v1, double v2, double v3, double v4, double v5, double v6, double v7
+	ref = v0, v1, v2, v3, v4, v5, v6, v7
+	return 0
+#global
+
+#module
 #define global ctype ref_xia8(%1 = 0, %2 = 0, %3 = 0, %4 = 0, %5 = 0, %6 = 0, %7 = 0, %8 = 0) \
 	ref_expr_tmpl_8(ref_xia8__@__ref, %1, %2, %3, %4, %5, %6, %7, %8)
 

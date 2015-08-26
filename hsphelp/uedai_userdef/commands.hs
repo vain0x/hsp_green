@@ -304,6 +304,30 @@ ref_xs の int 版。
 
 
 %index
+ref_xsa8
+文字列値配列(8要素)の参照
+%prm
+(v0, ..., v7)
+str v0, ..., v7 [""]: 渡す文字列値の列
+return: v0, ..., v7 が代入された配列変数
+%href
+ref_xs
+
+
+
+%index
+ref_xda8
+小数値配列(8要素)の参照
+%prm
+(v0, ..., v7)
+double v0, ..., v7 [0]: 渡す小数値の列
+return: v0, ..., v7 が代入された配列変数
+%href
+ref_xs
+
+
+
+%index
 ref_xia8
 整数値配列(8要素)の参照
 %prm
