@@ -330,6 +330,22 @@ ref_xs
 
 
 %index
+ref_xva_replicate
+同じ値からなる配列の参照
+%prm
+(value, len)
+var value: 値
+int len: 要素数
+return: value が len 個代入された配列変数
+%inst
+各値は代入演算子(=)でコピーされる。
+HSPの配列の仕様から分かる通り、len は1以上でなければならない。
+%href
+ref_xs
+
+
+
+%index
 RGB
 輝度からカラーコードを作る
 %prm

@@ -157,6 +157,17 @@
 
 
 #module
+#define global ctype ref_xva_replicate(%1, %2) \
+	ref_expr_tmpl_2(ref_xva_replicate__@__ref, %1, %2)
+
+#defcfunc ref_xva_replicate__@__ref var value, array ref, int len
+	assert len >= 1
+	repeat len : ref(cnt) = value : loop
+	return 0
+#global
+
+
+#module
 #defcfunc in_interval int x, int first, int last
 	return (first <= x && x < last)
 #global
