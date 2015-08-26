@@ -48,6 +48,32 @@
 
 
 #module
+#defcfunc compare_v var lhs, var rhs,  \
+	local vtype
+	
+	vtype = vartype(lhs)
+	assert vtype == vartype(rhs)
+	assert vtype != vartype_struct && vtype != vartype_comobj
+	if ( vtype == vartype_int ) {
+		return lhs - rhs
+		
+	} elsif ( vtype == vartype_double ) {
+		if ( absf(lhs - rhs) < 1e-9 ) {
+			return 0
+		} elsif ( lhs < rhs ) {
+			return -1
+		} else {
+			return 1
+		}
+		
+	} elsif ( vtype == vartype_label ) {
+		return lpeek(lhs) - lpeek(rhs)
+	}
+	return lhs != rhs
+#global
+
+
+#module
 #defcfunc major_s str lhs, str rhs
 	if ((lhs != rhs) < 0) { return rhs } else { return lhs }
 #global
