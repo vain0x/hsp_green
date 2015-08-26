@@ -3,14 +3,14 @@ HSP3 で使えるヘッダファイルの集まりです。
 
 ## 導入方法
 0. [最新版](https://github.com/vain0/uedai_userdef/archive/master.zip) をダウンロードして解凍する。
-0. [uedai_userdef フォルダ](uedai_userdef)をHSPの common フォルダのなかに入れる。
+0. uedai_userdef フォルダをHSPの common フォルダのなかに入れる。
 0. スクリプトの最初のほうに次のように書く。
 
 ```hsp
-#include "uedai_userdef/all.hsp"
+#include "uedai_userdef/src/all.hsp"
 ```
 
-* さらに [hsphelp フォルダ](hsphelp)の中身を hsphelp フォルダに入れると、F1キーのヘルプから命令の情報を確認できるようになる。
+* さらに、[hsphelp フォルダ](hsphelp)の中身をHSPの hsphelp フォルダに入れると、F1キーのヘルプから命令の情報を確認できるようになる。
 
 ### 規約
 * このリポジトリ内の全ファイルは誰でも自由に使用可能。

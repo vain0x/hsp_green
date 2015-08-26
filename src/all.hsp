@@ -1,0 +1,16 @@
+#ifndef        __uedai_userdef__
+#define global __uedai_userdef__
+
+#ifndef __userdef__
+ #define global __userdef__ 1
+#endif
+
+#include "meta_functions.hsp"
+#include "standard_consts.hsp"
+#include "switch_extended.hsp"
+#include "commands.hsp"
+#include "debug.hsp"
+#include "cleanup.hsp"
+#include "highlight.hsp"
+
+#endif
