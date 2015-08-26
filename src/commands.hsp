@@ -146,6 +146,15 @@
 	return 0
 #global
 
+#module
+#define global ctype ref_xia_iota(%1) \
+	ref_expr_tmpl_1(ref_xia_iota__@__ref, %1)
+
+#defcfunc ref_xia_iota__@__ref int len, array ref
+	repeat len : ref(cnt) = cnt : loop
+	return 0
+#global
+
 
 #module
 #defcfunc in_interval int x, int first, int last

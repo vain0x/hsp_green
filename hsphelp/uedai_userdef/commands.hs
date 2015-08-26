@@ -310,7 +310,20 @@ ref_xia8
 (v0, ..., v7)
 int v0, ..., v7 [0]: 渡す整数値の列
 return: v0, ..., v7 が代入された配列変数
+%href
+ref_xs
+
+
+
+%index
+ref_xia_iota
+整数値配列(0～n)の参照
+%prm
+(len)
+int len: 要素数
+return: 0, ..., (n - 1) が代入された配列変数
 %inst
+0, ..., (n - 1) がそれぞれ代入された、長さ n の整数値配列への参照を返す。
 %href
 ref_xs
 
