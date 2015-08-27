@@ -204,10 +204,10 @@
 
 #module
 #define global ctype ref_xia_iota(%1) \
-	ref_expr_tmpl_1(ref_xia_iota__@__ref, %1)
+	stt_ref_xia_iota@__ref(ref_xia_iota__@__ref(%1))
 
-#defcfunc ref_xia_iota__@__ref int len, array ref
-	repeat len : ref(cnt) = cnt : loop
+#defcfunc ref_xia_iota__@__ref int len
+	repeat len : stt_ref_xia_iota@__ref(cnt) = cnt : loop
 	return 0
 #global
 
