@@ -4,10 +4,6 @@ uedai_userdef/debug.hsp
 %group
 デバッグ支援
 
-%index
-declvar
-変数を初期化済みとして宣言する
-
 
 
 %index

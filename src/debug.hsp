@@ -13,7 +13,6 @@
 #uselib "winmm.dll"
 #cfunc timeGetTime "timeGetTime"
 
-#define global declvar(%1) if (0) { dim %1 }
 #define global __HERE__ ("#" + __LINE__ + " " + __FILE__)
 #define global ctype dbgstr(%1) ({"%1 = "} + (%1))
 #define global ctype dbgpair(%1, %2) ({"(%1,%2) = ("} + (%1) + ", " + (%2) + ")")
@@ -187,7 +186,6 @@
 #define global logecho(%1 = 0) :
 
 #define global __HERE__ ""
-#define global declvar(%1) :
 #define global ctype dbgstr(%1) ""
 #define global ctype dbgpair(%1, %2) ""
 #define global ctype dbghex(%1) ""

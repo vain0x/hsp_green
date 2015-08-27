@@ -47,6 +47,13 @@
 #define global ignore(%1) __ignored_result@__uedai = (%1)
 
 
+#ifdef _debug
+ #define global declvar(%1) if (0) { dim %1 }
+#else
+ #define global declvar(%1) :
+#endif
+
+
 #module
 #defcfunc compare_v var lhs, var rhs,  \
 	local vtype
