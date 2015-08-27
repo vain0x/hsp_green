@@ -143,31 +143,36 @@
 	_cat(%i,@__ref)( %1(%2,_cat(%o,@__ref),%3,%4,%5,%6,%7,%8,%9) )
 
 
+#define ctype ref_xT_tmpl@__uedai(%1, %2) %tref %i0 \
+	declvar %1                 :\
+	declvar _cat(%p,@__ref)    :\
+	%1(_cat(%p,@__ref)) = (%2) :\
+	_cat(%p,@__ref) ++         :\
+	return _cat(%p,@__ref) - 1 :\
+	%o0
+
 #module
 #define global ctype ref_xs(%1) \
-	ref_expr_tmpl_1(ref_xs__@__ref, %1)
+	stt_ref_xs@__ref(ref_xs__@__ref(%1))
 	
-#defcfunc ref_xs__@__ref str value, array ref
-	ref = value
-	return 0
+#defcfunc ref_xs__@__ref str value
+	ref_xT_tmpl@__uedai(stt_ref_xs@__ref, value)
 #global
 
 #module
 #define global ctype ref_xd(%1) \
-	ref_expr_tmpl_1(ref_xd__@__ref, %1)
+	stt_ref_xd@__ref(ref_xd__@__ref(%1))
 	
-#defcfunc ref_xd__@__ref double value, array ref
-	ref = value
-	return 0
+#defcfunc ref_xd__@__ref double value
+	ref_xT_tmpl@__uedai(stt_ref_xd@__ref, value)
 #global
 
 #module
 #define global ctype ref_xi(%1) \
-	ref_expr_tmpl_1(ref_xi__@__ref, %1)
-
-#defcfunc ref_xi__@__ref int value, array ref
-	ref = value
-	return 0
+	stt_ref_xi@__ref(ref_xi__@__ref(%1))
+	
+#defcfunc ref_xi__@__ref int value
+	ref_xT_tmpl@__uedai(stt_ref_xi@__ref, value)
 #global
 
 #module
