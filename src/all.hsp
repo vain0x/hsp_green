@@ -7,7 +7,6 @@
 
 #include "meta_functions.hsp"
 #include "standard_consts.hsp"
-#include "switch_extended.hsp"
 #include "commands.hsp"
 #include "cleanup.hsp"
 #include "highlight.hsp"
