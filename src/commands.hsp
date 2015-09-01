@@ -148,7 +148,7 @@
 	_cat(%i,@__tmp)( %1(%2,_cat(%o,@__tmp),%3,%4,%5,%6,%7,%8,%9) )
 
 
-#define ctype ref_xT_tmpl__(%1, %2) %tref %i0 \
+#define global ctype ref_xT_tmpl__(%1, %2) %tref %i0 \
 	declvar %1                 :\
 	declvar _cat(%p,@__tmp)    :\
 	%1(_cat(%p,@__tmp)) = (%2) :\
