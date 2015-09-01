@@ -1,5 +1,5 @@
-#ifndef        IG_UEDAI_COMMANDS_HSP
-#define global IG_UEDAI_COMMANDS_HSP
+#ifndef        ig_hsp_green_commands_hsp
+#define global ig_hsp_green_commands_hsp
 
 #define global null 0
 #ifndef true

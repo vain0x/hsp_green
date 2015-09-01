@@ -1,5 +1,5 @@
-#ifndef        __uedai_userdef__
-#define global __uedai_userdef__
+#ifndef        __hsp_green__
+#define global __hsp_green__
 
 #include "meta_functions.hsp"
 #include "standard_consts.hsp"

@@ -1,5 +1,5 @@
-#ifndef        IG_UEDAI_META_FUNCTIONS_HSP
-#define global IG_UEDAI_META_FUNCTIONS_HSP
+#ifndef        ig_hsp_green_meta_functions_hsp
+#define global ig_hsp_green_meta_functions_hsp
 
 #define global _empty// empty
 #define global ctype _rm(%1)/*%1*/

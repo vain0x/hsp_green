@@ -1,5 +1,5 @@
-#ifndef        IG_UEDAI_STANDARD_CONSTS_HSP
-#define global IG_UEDAI_STANDARD_CONSTS_HSP
+#ifndef        ig_hsp_green_standard_consts_hsp
+#define global ig_hsp_green_standard_consts_hsp
 
 #define global vartype_label  1
 #define global vartype_str    2

@@ -1,13 +1,13 @@
-# uedai_userdef
+# hsp_green
 HSP3 で使えるヘッダファイルの集まりです。
 
 ## 導入方法
-0. [最新版](https://github.com/vain0/uedai_userdef/archive/master.zip) をダウンロードして解凍する。
-0. uedai_userdef フォルダをHSPの common フォルダのなかに入れる。
+0. [最新版](https://github.com/vain0/hsp_green/archive/master.zip) をダウンロードして解凍する。
+0. hsp_green フォルダをHSPの common フォルダのなかに入れる。
 0. スクリプトの最初のほうに次のように書く。
 
 ```hsp
-#include "uedai_userdef/src/all.hsp"
+#include "hsp_green/src/all.hsp"
 ```
 
 * さらに、[hsphelp フォルダ](hsphelp)の中身をHSPの hsphelp フォルダに入れると、F1キーのヘルプから命令の情報を確認できるようになる。
