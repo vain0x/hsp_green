@@ -9,7 +9,6 @@
 #include "standard_consts.hsp"
 #include "switch_extended.hsp"
 #include "commands.hsp"
-#include "debug.hsp"
 #include "cleanup.hsp"
 #include "highlight.hsp"
 
