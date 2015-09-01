@@ -3,6 +3,7 @@
 
 #include "meta_functions.hsp"
 #include "standard_consts.hsp"
+#include "xswitch.hsp"
 #include "commands.hsp"
 #include "highlight.hsp"
 
