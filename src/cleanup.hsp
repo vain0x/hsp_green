@@ -4,7 +4,7 @@
 #module 
 
 #ifdef _DEBUG
-#deffunc delete_hsp_temporary_files@__uedai onexit
+#deffunc delete_hsp_temporary_files__ onexit
 	delfile_if_exists "obj"
 	delfile_if_exists "hsptmp"
 	return

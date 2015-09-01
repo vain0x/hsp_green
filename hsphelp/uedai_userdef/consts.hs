@@ -39,6 +39,17 @@ true
 
 
 %index
+__HERE__
+スクリプト位置の文字列リテラル
+%inst
+__HERE__ マクロが書かれた位置を表す。「#行番号 ファイル名」という形式の文字列リテラルに展開される。
+%href
+__LINE__
+__FILE__
+
+
+
+%index
 vartype_label
 label型の型タイプ値
 %inst

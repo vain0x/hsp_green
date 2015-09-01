@@ -15,15 +15,15 @@ switch マクロ
 %p2: switch の先頭へのラベル (for swcontinue)
 %p3: switch の先頭へのラベル (for swredo)
 //*/
-#define global switch(%1 = 1) %tswitch switch_part1@__uedai switch_part2@__uedai(%1)
+#define global switch(%1 = 1) %tswitch switch_part1__ switch_part2__(%1)
 
-#define switch_part1@__uedai %tswitch \
-	_switch_push@__uedai(_cat_scope(%n,__uedai)) \
-	_switch_push@__uedai(_cat_scope(%n,__uedai)) \
-	_switch_push@__uedai(_cat_scope(%n,__uedai)) \
-	_switch_push@__uedai(_cat_scope(%n,__uedai))
+#define switch_part1__ %tswitch \
+	_switch_push__(_cat_scope(%n,__tmp)) \
+	_switch_push__(_cat_scope(%n,__tmp)) \
+	_switch_push__(_cat_scope(%n,__tmp)) \
+	_switch_push__(_cat_scope(%n,__tmp))
 
-#define ctype switch_part2@__uedai(%1) %tswitch \
+#define ctype switch_part2__(%1) %tswitch \
 	swthis_bgn(%p)  \
 	swdefault_init  \
 	: *%p2 : %p = (%1) : *%p3 : if (0) {
@@ -42,7 +42,7 @@ switch マクロ
 #define global xcase    swbreak : case
 #define global xdefault swbreak : default
 
-#define ctype _switch_push@__uedai(%1) %tswitch  %s1
+#define ctype _switch_push__(%1) %tswitch  %s1
 
 #define global swthis               %tswitch_this  %p
 #define global ctype swthis_bgn(%1) %tswitch_this  %s1

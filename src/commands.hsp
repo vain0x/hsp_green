@@ -8,6 +8,9 @@
 #endif
 
 
+#define global __HERE__ ("#" + __LINE__ + " " + __FILE__)
+
+
 #define global MAX_PATH 260
 
 
@@ -44,13 +47,15 @@
 #define global elsif else : if
 
 
-#define global ignore(%1) __ignored_result@__uedai = (%1)
+#define global ignore(%1) __ignored_result@__tmp = (%1)
 
 
 #ifdef _debug
- #define global declvar(%1) if (0) { dim %1 }
+	#define global declvar(%1) if (0) { dim %1 }
+	#define global assert_sentinel logmes "ASSERTION ERROR: " + __HERE__ : assert : end 1
 #else
- #define global declvar(%1) :
+	#define global declvar(%1) :
+	#define global assert_sentinel end 1 //abort
 #endif
 
 
@@ -112,111 +117,111 @@
 #global
 
 #module
-#define global ctype cond_d(%1, %2 = 0, %3 = 0) cond_d_@__uedai(%1, %2, %3)
-#defcfunc cond_d_@__uedai int cond, double x, double y
+#define global ctype cond_d(%1, %2 = 0, %3 = 0) cond_d__(%1, %2, %3)
+#defcfunc cond_d__ int cond, double x, double y
 	if (cond) { return x } else { return y }
 #global
 
 #module
-#define global ctype cond_s(%1, %2 = "", %3 = "") cond_s_@__uedai(%1, %2, %3)
-#defcfunc cond_s_@__uedai int cond, str x, str y
+#define global ctype cond_s(%1, %2 = "", %3 = "") cond_s__(%1, %2, %3)
+#defcfunc cond_s__ int cond, str x, str y
 	if (cond) { return x } else { return y }
 #global
 
 
 #define global ctype ref_expr_tmpl_1(%1, %2 = _empty) %t__ref \
-	_cat(%i,@__ref)( %1(%2,_cat(%o,@__ref)) )
+	_cat(%i,@__tmp)( %1(%2,_cat(%o,@__tmp)) )
 	
 #define global ctype ref_expr_tmpl_2(%1, %2 = _empty, %3 = _empty) %t__ref \
-	_cat(%i,@__ref)( %1(%2,_cat(%o,@__ref),%3) )
+	_cat(%i,@__tmp)( %1(%2,_cat(%o,@__tmp),%3) )
 	
 #define global ctype ref_expr_tmpl_3(%1, %2 = _empty, %3 = _empty, %4 = _empty) %t__ref \
-	_cat(%i,@__ref)( %1(%2,_cat(%o,@__ref),%3,%4) )
+	_cat(%i,@__tmp)( %1(%2,_cat(%o,@__tmp),%3,%4) )
 	
 #define global ctype ref_expr_tmpl_4(%1, %2 = _empty, %3 = _empty, %4 = _empty, %5 = _empty) %t__ref \
-	_cat(%i,@__ref)( %1(%2,_cat(%o,@__ref),%3,%4,%5) )
+	_cat(%i,@__tmp)( %1(%2,_cat(%o,@__tmp),%3,%4,%5) )
 
 #define global ctype ref_expr_tmpl_5(%1, %2 = _empty, %3 = _empty, %4 = _empty, %5 = _empty, %6 = _empty) %t__ref \
-	_cat(%i,@__ref)( %1(%2,_cat(%o,@__ref),%3,%4,%5,%6) )
+	_cat(%i,@__tmp)( %1(%2,_cat(%o,@__tmp),%3,%4,%5,%6) )
 
 #define global ctype ref_expr_tmpl_8(%1, %2 = _empty, %3 = _empty, %4 = _empty, %5 = _empty, %6 = _empty, %7 = _empty, %8 = _empty, %9 = _empty) %t__ref \
-	_cat(%i,@__ref)( %1(%2,_cat(%o,@__ref),%3,%4,%5,%6,%7,%8,%9) )
+	_cat(%i,@__tmp)( %1(%2,_cat(%o,@__tmp),%3,%4,%5,%6,%7,%8,%9) )
 
 
-#define ctype ref_xT_tmpl@__uedai(%1, %2) %tref %i0 \
+#define ctype ref_xT_tmpl__(%1, %2) %tref %i0 \
 	declvar %1                 :\
-	declvar _cat(%p,@__ref)    :\
-	%1(_cat(%p,@__ref)) = (%2) :\
-	_cat(%p,@__ref) ++         :\
-	return _cat(%p,@__ref) - 1 :\
+	declvar _cat(%p,@__tmp)    :\
+	%1(_cat(%p,@__tmp)) = (%2) :\
+	_cat(%p,@__tmp) ++         :\
+	return _cat(%p,@__tmp) - 1 :\
 	%o0
 
 #module
 #define global ctype ref_xs(%1) \
-	stt_ref_xs@__ref(ref_xs__@__ref(%1))
+	stt_ref_xs@__tmp(ref_xs__@__tmp(%1))
 	
-#defcfunc ref_xs__@__ref str value
-	ref_xT_tmpl@__uedai(stt_ref_xs@__ref, value)
+#defcfunc ref_xs__@__tmp str value
+	ref_xT_tmpl__(stt_ref_xs@__tmp, value)
 #global
 
 #module
 #define global ctype ref_xd(%1) \
-	stt_ref_xd@__ref(ref_xd__@__ref(%1))
+	stt_ref_xd@__tmp(ref_xd__@__tmp(%1))
 	
-#defcfunc ref_xd__@__ref double value
-	ref_xT_tmpl@__uedai(stt_ref_xd@__ref, value)
+#defcfunc ref_xd__@__tmp double value
+	ref_xT_tmpl__(stt_ref_xd@__tmp, value)
 #global
 
 #module
 #define global ctype ref_xi(%1) \
-	stt_ref_xi@__ref(ref_xi__@__ref(%1))
+	stt_ref_xi@__tmp(ref_xi__@__tmp(%1))
 	
-#defcfunc ref_xi__@__ref int value
-	ref_xT_tmpl@__uedai(stt_ref_xi@__ref, value)
+#defcfunc ref_xi__@__tmp int value
+	ref_xT_tmpl__(stt_ref_xi@__tmp, value)
 #global
 
 #module
 #define global ctype ref_xsa8(%1 = "", %2 = "", %3 = "", %4 = "", %5 = "", %6 = "", %7 = "", %8 = "") \
-	ref_expr_tmpl_8(ref_xsa8__@__ref, %1, %2, %3, %4, %5, %6, %7, %8)
+	ref_expr_tmpl_8(ref_xsa8__, %1, %2, %3, %4, %5, %6, %7, %8)
 
-#defcfunc ref_xsa8__@__ref str v0, array ref, str v1, str v2, str v3, str v4, str v5, str v6, str v7
+#defcfunc ref_xsa8__ str v0, array ref, str v1, str v2, str v3, str v4, str v5, str v6, str v7
 	ref = v0, v1, v2, v3, v4, v5, v6, v7
 	return 0
 #global
 
 #module
 #define global ctype ref_xda8(%1 = 0, %2 = 0, %3 = 0, %4 = 0, %5 = 0, %6 = 0, %7 = 0, %8 = 0) \
-	ref_expr_tmpl_8(ref_xda8__@__ref, %1, %2, %3, %4, %5, %6, %7, %8)
+	ref_expr_tmpl_8(ref_xda8__, %1, %2, %3, %4, %5, %6, %7, %8)
 
-#defcfunc ref_xda8__@__ref double v0, array ref, double v1, double v2, double v3, double v4, double v5, double v6, double v7
+#defcfunc ref_xda8__ double v0, array ref, double v1, double v2, double v3, double v4, double v5, double v6, double v7
 	ref = v0, v1, v2, v3, v4, v5, v6, v7
 	return 0
 #global
 
 #module
 #define global ctype ref_xia8(%1 = 0, %2 = 0, %3 = 0, %4 = 0, %5 = 0, %6 = 0, %7 = 0, %8 = 0) \
-	ref_expr_tmpl_8(ref_xia8__@__ref, %1, %2, %3, %4, %5, %6, %7, %8)
+	ref_expr_tmpl_8(ref_xia8__, %1, %2, %3, %4, %5, %6, %7, %8)
 
-#defcfunc ref_xia8__@__ref int v0, array ref, int v1, int v2, int v3, int v4, int v5, int v6, int v7
+#defcfunc ref_xia8__ int v0, array ref, int v1, int v2, int v3, int v4, int v5, int v6, int v7
 	ref = v0, v1, v2, v3, v4, v5, v6, v7
 	return 0
 #global
 
 #module
 #define global ctype ref_xia_iota(%1) \
-	stt_ref_xia_iota@__ref(ref_xia_iota__@__ref(%1))
+	stt_ref_xia_iota@__tmp(ref_xia_iota__(%1))
 
-#defcfunc ref_xia_iota__@__ref int len
-	repeat len : stt_ref_xia_iota@__ref(cnt) = cnt : loop
+#defcfunc ref_xia_iota__ int len
+	repeat len : stt_ref_xia_iota@__tmp(cnt) = cnt : loop
 	return 0
 #global
 
 
 #module
 #define global ctype ref_xva_replicate(%1, %2) \
-	ref_expr_tmpl_2(ref_xva_replicate__@__ref, %1, %2)
+	ref_expr_tmpl_2(ref_xva_replicate__, %1, %2)
 
-#defcfunc ref_xva_replicate__@__ref var value, array ref, int len
+#defcfunc ref_xva_replicate__ var value, array ref, int len
 	assert len >= 1
 	repeat len : ref(cnt) = value : loop
 	return 0
@@ -258,7 +263,7 @@
 
 
 #ifdef _DEBUG
- #define global dir_exe2 dir_exe2@__uedai
+ #define global dir_exe2 dir_exe2@__tmp
 	dir_exe2 = dir_cur
 #else //defined(_DEBUG)
  #define global dir_exe2 dir_exe

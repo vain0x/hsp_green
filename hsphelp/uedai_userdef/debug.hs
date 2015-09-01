@@ -7,12 +7,6 @@ uedai_userdef/debug.hsp
 
 
 %index
-__HERE__
-スクリプト位置の文字列リテラル
-
-
-
-%index
 dbgstr
 式とその値の文字列
 %prm
@@ -51,14 +45,6 @@ dbgcode
 (x_debug, x_release)
 %inst
 デバッグ時は x_debug に、リリース時は x_release に展開される。
-
-
-
-%index
-assert_sentinel
-絶対に実行されないことを言明
-%inst
-assert の一種。default 節など、分岐の流れから絶対に実行されないところに書く。
 
 
 
