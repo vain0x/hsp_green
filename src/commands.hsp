@@ -295,4 +295,14 @@
 	return
 #global
 
+
+#ifdef _DEBUG
+#module
+#deffunc delete_hsp_temporary_files__ onexit
+	delfile_if_exists "obj"
+	delfile_if_exists "hsptmp"
+	return
+#global
+#endif //defined(_DEBUG)
+
 #endif
