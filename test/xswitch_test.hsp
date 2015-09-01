@@ -1,0 +1,87 @@
+#include "../src/xswitch.hsp"
+
+#cmpopt ppout 1
+
+	// どの節にもヒットしない
+	c = 0
+	xswitch (0)
+		xcase 0: 
+	xswend
+	assert c == 0
+
+	// 正しい節にヒット (case)
+	c = 0
+	xswitch(1)
+		xcase 0:  assert_sentinel
+		xcase 1:  c = 1
+		xdefault: assert_sentinel
+	xswend
+	assert c == 1
+	
+	// 正しい節にヒット (default)
+	xswitch(2)
+		xcase 0:  assert_sentinel
+		xcase 1:  assert_sentinel
+		xdefault: c = 1
+		xcase 2:  assert_sentinel
+	xswend
+	assert c == 1
+	
+	// go_case (case に入る)
+	c = 0
+	xswitch(3)
+		xcase 1: assert c == 1 : c ++
+		xcase 2: assert_sentinel
+		xcase 3: assert c == 0 : c ++ : go_case 1
+		xdefault: assert_sentinel
+	xswend
+	assert c == 2
+	
+	// go_case (default に入る)
+	c = 0
+	xswitch(4)
+		xcase 0: assert_sentinel
+		xcase 4:  assert c == 0 : c ++ : go_case 7
+		xdefault: assert c == 1 : c ++
+	xswend
+	assert c == 2
+	
+	// go_default (default 1つ)
+	c = 0
+	xswitch(5)
+		xcase 5:  assert c == 0 : c ++ : go_default
+		xcase_if (true): assert_sentinel
+		xdefault: assert c == 1 : c ++
+	xswend
+	assert c == 2
+	
+	// go_default (default なし)
+	// assert_sentinel エラー
+	/*
+	c = 0
+	xswitch(6)
+		xcase 6: assert c == 0 : c ++ : go_default
+		xcase 6: assert_sentinel
+	xswend
+	assert c == 1
+	//*/
+	
+	// go_default (default 2つ)
+	c = 0
+	xswitch(7)
+		xcase 7:  assert c == 0 : c ++ : go_default
+		xdefault: assert c == 1 : c ++
+		xdefault: assert_sentinel
+	xswend
+	assert c == 2
+	
+	// xswfall
+	c = 0
+	xswitch(8)
+		xcase 8:         assert c == 0 : c ++ : xswfall
+		xcase_if(false): assert c == 1 : c ++
+	xswend
+	assert c == 2
+	
+	logmes "xswitch test completed."
+	
