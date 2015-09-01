@@ -26,6 +26,9 @@ HSP3で使えるヘッダファイルの集まり。コンセプトは **いつも定義して使いたい** 。
  * ``dialog msg, dialog_yesno, cap``
  * などなど。[定義ファイル](src/standard_consts.hsp) を参照。
 
+* 排他的比較文 xswitch
+ * swbreak を省略できる switch 文のようなもの。
+
 * こまごまとしたコマンド
  * 2つの数値の大きいほうを返す `major_i()`
  * COLORREF値で色を指定する `color32`
