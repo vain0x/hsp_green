@@ -99,7 +99,7 @@ xswitch 文から脱出し、次の xswend 命令の直後に移動する。
 
 
 %index
-swcontinue
+xswcontinue
 排他的比較文をやり直す (更新あり)
 %inst
 xswitch 文の先頭に戻る。xswitch のパラメータが式なら、その式を再び計算する。
@@ -109,7 +109,7 @@ xswredo
 
 
 %index
-swredo
+xswredo
 排他的比較文をやり直す (更新なし)
 %inst
 xswitch 文の先頭に戻る。比較元の値(xswthis)は変更されない。
