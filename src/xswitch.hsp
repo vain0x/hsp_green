@@ -5,9 +5,9 @@
 xswlabel マクロタグ
 
 まず最初に3つのラベルを D, B, D, C0 の順でプッシュ。C0 がスタックトップ。
-D:  go_default の行き先。xdefault または xswend の位置。
+D:  goto_xdefault の行き先。xdefault または xswend の位置。
 B:  xswbreak の行き先。xswend の位置。
-Ci: go_fall の行き先。次の xcase, xdefault, xswend のいずれか。 
+Ci: xswfall の行き先。次の xcase, xdefault, xswend のいずれか。 
 
 xcase のたび、その入口(判定後)に C0 を配置。これがそのケースへのラベルになる。
 そして新しいラベル C1 をプッシュ。
@@ -42,7 +42,7 @@ xswend では、スタックトップから3つのラベルを配置する。最後に底の D を除去する。
 #define global xswfall %txswlabel \
 	goto *%p0
 	
-#define global go_default %txswlabel \
+#define global goto_xdefault %txswlabel \
 	goto *%p3
 	
 #define global xswbreak %txswlabel \
@@ -102,7 +102,7 @@ xswitch マクロタグ
 #define global xswcontinue %txswitch goto *%p1
 #define global xswredo     %txswitch goto *%p2
 
-#define global go_case(%1) %txswitch \
+#define global goto_xcase(%1) %txswitch \
 	%p = (%1) : xswredo
 
 #endif

@@ -20,49 +20,49 @@
 	xswend
 	assert c == 1
 	
-	// go_case (case ‚É“ü‚é)
+	// goto_xcase (case ‚É“ü‚é)
 	c = 0
 	xswitch(3)
 		xcase 1: assert c == 1 : c ++
 		xcase 2: assert_sentinel
-		xcase 3: assert c == 0 : c ++ : go_case 1
+		xcase 3: assert c == 0 : c ++ : goto_xcase 1
 		xdefault: assert_sentinel
 	xswend
 	assert c == 2
 	
-	// go_case (default ‚É“ü‚é)
+	// goto_xcase (default ‚É“ü‚é)
 	c = 0
 	xswitch(4)
 		xcase 0: assert_sentinel
-		xcase 4:  assert c == 0 : c ++ : go_case 7
+		xcase 4:  assert c == 0 : c ++ : goto_xcase 7
 		xdefault: assert c == 1 : c ++
 	xswend
 	assert c == 2
 	
-	// go_default (default 1‚Â)
+	// goto_xdefault (default 1‚Â)
 	c = 0
 	xswitch(5)
-		xcase 5:  assert c == 0 : c ++ : go_default
+		xcase 5:  assert c == 0 : c ++ : goto_xdefault
 		xcase_if (true): assert_sentinel
 		xdefault: assert c == 1 : c ++
 	xswend
 	assert c == 2
 	
-	// go_default (default ‚È‚µ)
+	// goto_xdefault (default ‚È‚µ)
 	// assert_sentinel ƒGƒ‰[
 	/*
 	c = 0
 	xswitch(6)
-		xcase 6: assert c == 0 : c ++ : go_default
+		xcase 6: assert c == 0 : c ++ : goto_xdefault
 		xcase 6: assert_sentinel
 	xswend
 	assert c == 1
 	//*/
 	
-	// go_default (default 2‚Â)
+	// goto_xdefault (default 2‚Â)
 	c = 0
 	xswitch(7)
-		xcase 7:  assert c == 0 : c ++ : go_default
+		xcase 7:  assert c == 0 : c ++ : goto_xdefault
 		xdefault: assert c == 1 : c ++
 		xdefault: assert_sentinel
 	xswend

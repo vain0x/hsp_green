@@ -25,8 +25,8 @@ xdefault
 xswend
 xswbreak
 xswfall
-go_case
-go_default
+goto_xcase
+goto_xdefault
 
 
 
@@ -50,7 +50,7 @@ xswitch 文のなかで、比較元の値(xswthis)が val に等しいときに実行される処理を指定
 比較には等号(==)を使用する。型は xswthis のほうに合わせられる。等号以外の条件を指定するには、xcase_if を使用する。
 %href
 case
-go_case
+goto_xcase
 xswfall
 
 
@@ -66,7 +66,7 @@ xswitch 文のなかで、条件 cond が真であるときに実行される処理を指定する。この節が
 
 if 文と似ているが、この条件式は比較元の値 xswthis を使うべきである。
 %href
-go_case
+goto_xcase
 
 
 
@@ -78,7 +78,7 @@ xswitch 文のなかで、ほかの条件が真でなかったときに実行される処理を指定する。この
 
 %href
 default
-go_default
+goto_xdefault
 
 
 
@@ -119,19 +119,19 @@ xswcontinue
 
 
 %index
-go_case
+goto_xcase
 xcase 節に移動する
 %prm
 val
 %inst
 現在の xswitch 文の、値 val に対応する節に移動する。
 
-実際には、比較元の値(xswthis)を val に変更してから、swredo する。
+実際には、比較元の値(xswthis)を val に変更してから、swredo する。xcase だけでなく、xcase_if、xdefault の節に入ることもある。
 
 
 
 %index
-go_default
+goto_xdefault
 xdefault 節に移動する
 %inst
 現在の xswitch 文の xdefault 節に移動する。
