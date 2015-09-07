@@ -37,7 +37,7 @@ var v: 未初期化でも問題ない変数
 
 
 %index
-assert_sentinel
+assert_unreachable
 絶対に実行されないことを言明
 %inst
 assert の一種。「この命令は絶対に実行されない」を意味する。。default 節や else 節に書くことがしばしばある。

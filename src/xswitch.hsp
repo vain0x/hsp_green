@@ -93,7 +93,7 @@ xswitch マクロタグ
 	
 #ifdef _debug
 	#define _xswend_debug@xswitch %txswitch \
-		xdefault: assert_sentinel
+		xdefault: assert_unreachable
 #else //defined(_debug)
 	#define _xswend_debug@xswitch :
 #endif //defined(_debug)

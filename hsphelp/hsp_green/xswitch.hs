@@ -16,7 +16,7 @@ xswitch-xcase-xswend 構文は、ある値 val に関する条件分岐である。
 
 標準マクロの switch-case-swend に似ているが、異なる点が2つある。
 1. xswitch 文はいわゆる「fallthrough」を起こさない。すなわち、xcase 節の最後で自動的に xswend に移動する。fallthrough を行いたいときは、xswfall 命令を使用する。
-2. xswitch 文は、必ずいずれかのケースを実行しなければならない。デバッグ実行時においてどのケースにもマッチすることなく xswend に到達したときは、assert_sentinel のエラーを生じる。
+2. xswitch 文は、必ずいずれかのケースを実行しなければならない。デバッグ実行時においてどのケースにもマッチすることなく xswend に到達したときは、assert_unreachable のエラーを生じる。
 %href
 xswitch
 xcase
@@ -137,7 +137,7 @@ xdefault 節に移動する
 現在の xswitch 文の xdefault 節に移動する。
 もし xdefault より前の xcase, xcase_if 節がすべての場合を網羅していたとしても、xdefault 節に入る。
 
-xdefault 節がない場合は、xswend に移動する。デバッグ時には assert_sentinel エラーとなる。
+xdefault 節がない場合は、xswend に移動する。デバッグ時には assert_unreachable エラーとなる。
 
 
 
