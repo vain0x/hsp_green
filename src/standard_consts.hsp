@@ -18,7 +18,7 @@
 #define global ctype mref_bmscr(%1, %2 = 0) mref %1, (96 + (%2))
 
 #define global noteadd_insert(%1, %2 = _empty) noteadd %1, %2, 0
-#define global noteadd_overwrite(%1, %2 = _empty) noteadd %1, %2, 1
+#define global noteadd_update(%1, %2 = _empty) noteadd %1, %2, 1
 
 #define global dirlist_all 0
 #define global dirlist_files 1
