@@ -126,7 +126,7 @@ compare_v
 var lhs: 左辺の値
 var rhs: 右辺の値
 return: 比較値
-%href
+%inst
 比較値とは、次のような意味をもつ整数値である。
 負 →「左辺(lhs)のほうが右辺(rhs)より小さい」
 0  →「左辺は右辺と等しい」
