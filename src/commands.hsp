@@ -52,11 +52,10 @@
 
 #ifdef _debug
 	#define global declvar(%1) if (0) { dim %1 }
-	#define global assert_unreachable logmes "ASSERTION ERROR: " + __HERE__ : assert : end 1
 #else
 	#define global declvar(%1) :
-	#define global assert_unreachable end 1 //abort
 #endif
+#define global assert_unreachable assert false
 #define global assert_sentinel assert_unreachable
 
 
