@@ -2,13 +2,6 @@
 
 #cmpopt ppout 1
 
-	// どの節にもヒットしない
-	c = 0
-	xswitch (0)
-		xcase 0: 
-	xswend
-	assert c == 0
-
 	// 正しい節にヒット (case)
 	c = 0
 	xswitch(1)
