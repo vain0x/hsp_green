@@ -51,6 +51,18 @@ is_true
 
 
 %index
+unless
+条件が否定されるときの分岐
+%prm
+bool cond: 条件式
+%inst
+条件 cond が成り立たないときに実行される分岐を指定する。if 文とは cond の解釈だけが異なる。
+
+else 節やブロックの記法 { ... } も使用できる。
+
+
+
+%index
 elsif
 else : if
 %sample

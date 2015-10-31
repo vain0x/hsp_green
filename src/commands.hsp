@@ -48,6 +48,9 @@
 #global
 
 
+#define global unless(%1) if is_false(%1)
+
+
 #define global elsif else : if
 
 
