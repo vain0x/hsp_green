@@ -3,6 +3,53 @@ hsp_green
 %group
 ユーザ定義コマンド
 
+
+
+%index
+is_true
+真値か？
+%prm
+int p: 条件式または整数値
+return: p が 0 でなければ真
+%inst
+p が整数値(int)でなければエラーになる。
+
+一般的に、(p == true) という式は正しく動かない。これはビット演算と論理積 (&&) を組み合わせたときに障害になりやすい (サンプルスクリプトを参照)。
+(p != false) と書けばほぼ問題ないが、文字列の "0" も偽であると判定されることに注意。
+%sample
+	repeat
+		stick stick_val, 64
+
+		//良い例
+		if ( is_true(stick_val & 64) && is_true(stick_val & 16) ) {
+			mes "Ctrl とスペースキーが押されました"
+		}
+
+		//悪い例
+		if ( (stick_val & 64) && (stick_val & 16) ) {
+			mes "この条件式は必ず偽になる"
+		}
+
+		wait 1
+	loop
+
+
+
+%index
+is_false
+偽値か？
+%prm
+int p: 条件式または整数値
+return: p が 0 なら真
+%inst
+p が整数値(int)でなければエラーになる。
+
+(p == false) と書いてもほぼ問題ないが、文字列の "0" も偽であると判定されることに注意。
+%href
+is_true
+
+
+
 %index
 elsif
 else : if
@@ -16,7 +63,7 @@ else : if
 	} else {
 		//条件1,2,3が偽
 	}
-	
+
 %href
 if
 else
