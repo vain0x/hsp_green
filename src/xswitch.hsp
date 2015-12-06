@@ -7,7 +7,7 @@ xswlabel マクロタグ
 まず最初に3つのラベルを D, B, D, C0 の順でプッシュ。C0 がスタックトップ。
 D:  goto_xdefault の行き先。xdefault または xswend の位置。
 B:  xswbreak の行き先。xswend の位置。
-Ci: xswfall の行き先。次の xcase, xdefault, xswend のいずれか。 
+Ci: xswfall の行き先。次の xcase, xdefault, xswend のいずれか。
 
 xcase のたび、その入口(判定後)に C0 を配置。これがそのケースへのラベルになる。
 そして新しいラベル C1 をプッシュ。
@@ -23,7 +23,7 @@ xswend では、スタックトップから3つのラベルを配置する。最後に底の D を除去する。
 //*/
 #define _init@xswlabel %txswlabel \
 	%i0 %i0 _init2@xswlabel(%p1)
-	
+
 #define ctype _init2@xswlabel(%1) %txswlabel \
 	%s1 %i0
 
@@ -41,13 +41,13 @@ xswend では、スタックトップから3つのラベルを配置する。最後に底の D を除去する。
 
 #define global xswfall %txswlabel \
 	goto *%p0
-	
+
 #define global goto_xdefault %txswlabel \
 	goto *%p3
-	
+
 #define global xswbreak %txswlabel \
 	goto *%p2
-	
+
 /**
 xswitch マクロタグ
 
@@ -61,8 +61,8 @@ xswitch マクロタグ
 	//
 
 #define _part1@xswitch %txswitch \
-	%i0 %i0                              \
-	_push@xswitch(_cat_scope(%n,__tmp))  \
+	%i0 %i0                      \
+	_push@xswitch(_tmp_var(%n))  \
 	//
 
 #define ctype _part2@xswitch(%1) %txswitch \
@@ -72,7 +72,7 @@ xswitch マクロタグ
 	*%p2            :\
 	if (0) {        :\
 	//
-	
+
 #define ctype _push@xswitch(%1) %txswitch \
 	%s1
 
@@ -81,7 +81,7 @@ xswitch マクロタグ
 
 #define global xcase(%1) \
 	xcase_if( xswthis == (%1) )
-	
+
 #define global xdefault %txswitch \
 	} else : if (1) { _pop_xdefault@xswlabel
 
@@ -90,7 +90,7 @@ xswitch マクロタグ
 	}                      :\
 	_pop_xswend@xswlabel   :\
 	%o0 %o0 %o0 //
-	
+
 #ifdef _debug
 	#define _xswend_debug@xswitch %txswitch \
 		xdefault: assert_unreachable
