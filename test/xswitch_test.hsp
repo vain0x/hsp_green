@@ -1,4 +1,4 @@
-#include "../src/xswitch.hsp"
+#include "../src/all.hsp"
 
 #cmpopt ppout 1
 
