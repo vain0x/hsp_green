@@ -66,6 +66,14 @@
 #define global assert_sentinel assert_unreachable
 
 
+#define global if_init \
+	%tif_init %i0 \
+	declvar _tmp_var(%p)     :\
+	unless ( _tmp_var(%p) )  :\
+		_tmp_var(%p) = true  :\
+	%o0
+
+
 #module
 #defcfunc compare_v var lhs, var rhs,  \
 	local vtype
