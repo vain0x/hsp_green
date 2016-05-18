@@ -1,51 +1,51 @@
 # hsp_green
-HSP3�Ŏg����w�b�_�t�@�C���̏W�܂�B�R���Z�v�g�� **������`���Ďg������** �B
+HSP3で使えるヘッダファイルの集まり。コンセプトは **いつも定義して使いたい** 。
 
-## �������@
-0. [�ŐV��](https://github.com/vain0/hsp_green/archive/master.zip) ���_�E�����[�h���ĉ𓀂���B
-0. hsp_green �t�H���_��HSP�� common �t�H���_�̂Ȃ��ɓ����B
-0. �X�N���v�g�̍ŏ��̂ق��Ɏ��̂悤�ɏ����B
+## 導入方法
+0. [最新版](https://github.com/vain0/hsp_green/archive/master.zip) をダウンロードして解凍する。
+0. hsp_green フォルダをHSPの common フォルダのなかに入れる。
+0. スクリプトの最初のほうに次のように書く。
 
 ```hsp
 #include "hsp_green/src/all.hsp"
 ```
 
-* ����ɁA[hsphelp �t�H���_](hsphelp)�̒��g��HSP�� hsphelp �t�H���_�ɓ����ƁAF1�L�[�̃w���v����e��R�}���h�̏����m�F�ł���悤�ɂȂ�B
+* さらに、[hsphelp フォルダ](hsphelp)の中身をHSPの hsphelp フォルダに入れると、F1キーのヘルプから各種コマンドの情報を確認できるようになる。
 
-### Paket �ɂ�铱�����@
-paket.dependencies �Ɉȉ��̂悤�ɋL�q���āApaket install �R�}���h�����s����B
+### Paket による導入方法
+paket.dependencies に以下のように記述して、paket install コマンドを実行する。
 
 ```
 github vain0/hsp_green src/all.hsp
 ```
 
-�_�E�����[�h���ꂽ�t�@�C���̂Ȃ��ɂ��� all.hsp �� #include ���Ďg���B
+ダウンロードされたファイルのなかにある all.hsp を #include して使う。
 
-* �Q�l: [Paket �� Gist �Ŏn�߂�ȒP�p�b�P�[�W�Ǘ�](http://qiita.com/ue_dai/items/41f13fed6f88be7f4e7e)
+* 参考: [Paket と Gist で始める簡単パッケージ管理](http://qiita.com/ue_dai/items/41f13fed6f88be7f4e7e)
 
-## �@�\
-* �قڃI�[�o�[�w�b�h�Ȃ�
- * �����[�X��(exe �t�@�C���ɂ����Ƃ�)�́A�g�����Ԃ񂾂������d���Ȃ�Ȃ��B
- * ���������W���[���͍œK���ŏ����Ă�4�o�C�g�����B�V���[�g�R�[�h�v���O���~���O�ł͒��ӁB
+## 機能
+* ほぼオーバーヘッドなし
+ * リリース時(exe ファイルにしたとき)は、使ったぶんだけしか重くならない。
+ * ただしモジュールは最適化で消えても4バイト消費する。ショートコードプログラミングでは注意。
 
-* �W�����ߗp�̖��O�萔��}�N��
+* 標準命令用の名前定数やマクロ
  * ``gsel_show id`` (= ``gsel id, 1``)
  * ``dialog msg, dialog_yesno, cap``
- * �ȂǂȂǁB[��`�t�@�C��](src/standard_consts.hsp) ���Q�ƁB
+ * などなど。[定義ファイル](src/standard_consts.hsp) を参照。
 
-* �r���I��r�� xswitch
- * swbreak ���ȗ��ł��� switch ���̂悤�Ȃ��́B
+* 排他的比較文 xswitch
+ * swbreak を省略できる switch 文のようなもの。
 
-* ���܂��܂Ƃ����R�}���h
- * 2�̐��l�̑傫���ق���Ԃ� `major_i()`
- * COLORREF�l�ŐF���w�肷�� `color32`
- * �Ȃ�
+* こまごまとしたコマンド
+ * 2つの数値の大きいほうを返す `major_i()`
+ * COLORREF値で色を指定する `color32`
+ * など
 
-* �W���I�ȃ��^�֐�
-  * �}�N���̒�`�ɕ֗��ȏ����B
+* 標準的なメタ関数
+  * マクロの定義に便利な小物。
 
-* �ꎞ�t�@�C���̎�������
-  * �f�o�b�O���s��A`obj`, `hsptmp` �������I�ɍ폜����B
+* 一時ファイルの自動消去
+  * デバッグ実行後、`obj`, `hsptmp` を自動的に削除する。
 
-### ���C�Z���X
-�{���|�W�g���Ɋ܂܂�邷�ׂẴt�@�C���� public domain �Ƃ���B
+### ライセンス
+本リポジトリに含まれるすべてのファイルは public domain とする。
