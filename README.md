@@ -23,10 +23,6 @@ github vain0/hsp_green src/all.hsp
 
 * 参考: [Paket と Gist で始める簡単パッケージ管理](http://qiita.com/ue_dai/items/41f13fed6f88be7f4e7e)
 
-### 規約
-* このリポジトリ内の全ファイルは誰でも自由に使用可能。
-  * [NYSL (煮るなり焼くなり好きにしろライセンス)](http://www.kmonos.net/nysl/)
-
 ## 機能
 * ほぼオーバーヘッドなし
  * リリース時(exe ファイルにしたとき)は、使ったぶんだけしか重くならない。
@@ -50,3 +46,6 @@ github vain0/hsp_green src/all.hsp
 
 * 一時ファイルの自動消去
   * デバッグ実行後、`obj`, `hsptmp` を自動的に削除する。
+
+### ライセンス
+本リポジトリに含まれるすべてのファイルは public domain とする。
