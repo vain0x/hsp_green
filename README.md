@@ -12,6 +12,17 @@ HSP3で使えるヘッダファイルの集まり。コンセプトは **いつも定義して使いたい** 。
 
 * さらに、[hsphelp フォルダ](hsphelp)の中身をHSPの hsphelp フォルダに入れると、F1キーのヘルプから各種コマンドの情報を確認できるようになる。
 
+### Paket による導入方法
+paket.dependencies に以下のように記述して、paket install コマンドを実行する。
+
+```
+github vain0/hsp_green src/all.hsp
+```
+
+ダウンロードされたファイルのなかにある all.hsp を #include して使う。
+
+* 参考: [Paket と Gist で始める簡単パッケージ管理](http://qiita.com/ue_dai/items/41f13fed6f88be7f4e7e)
+
 ### 規約
 * このリポジトリ内の全ファイルは誰でも自由に使用可能。
   * [NYSL (煮るなり焼くなり好きにしろライセンス)](http://www.kmonos.net/nysl/)
