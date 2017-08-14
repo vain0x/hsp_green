@@ -46,6 +46,3 @@ github vain0/hsp_green >> paket.dependencies
 
 - 一時ファイルの自動消去
     - デバッグ実行後、`obj`, `hsptmp` を自動的に削除する。
-
-### ライセンス
-本リポジトリに含まれるすべてのファイルは public domain とする。
