@@ -10,7 +10,7 @@ HSP3で使えるヘッダファイルの集まり。コンセプトは **いつ�
 #include "hsp_green/src/all.hsp"
 ```
 
-* さらに、[hsphelp フォルダ](hsphelp)の中身をHSPの hsphelp フォルダに入れると、F1キーのヘルプから各種コマンドの情報を確認できるようになる。
+- さらに、[hsphelp フォルダ](hsphelp)の中身をHSPの hsphelp フォルダに入れると、F1キーのヘルプから各種コマンドの情報を確認できるようになる。
 
 ### Paket による導入方法
 ソリューションルートでコマンドプロンプトを開き、以下のコマンドを入力する。
@@ -21,31 +21,31 @@ github vain0/hsp_green >> paket.dependencies
 .paket\paket.exe install
 ```
 
-* 参考: [Paket と Gist で始める簡単パッケージ管理](http://qiita.com/ue_dai/items/41f13fed6f88be7f4e7e)
+- 参考: [Paket と Gist で始める簡単パッケージ管理](http://qiita.com/ue_dai/items/41f13fed6f88be7f4e7e)
 
 ## 機能
-* ほぼオーバーヘッドなし
- * リリース時(exe ファイルにしたとき)は、使ったぶんだけしか重くならない。
- * ただしモジュールは最適化で消えても4バイト消費する。ショートコードプログラミングでは注意。
+- ほぼオーバーヘッドなし
+    - リリース時(exe ファイルにしたとき)は、使ったぶんだけしか重くならない。
+    - ただしモジュールは最適化で消えても4バイト消費する。ショートコードプログラミングでは注意。
 
-* 標準命令用の名前定数やマクロ
- * ``gsel_show id`` (= ``gsel id, 1``)
- * ``dialog msg, dialog_yesno, cap``
- * などなど。[定義ファイル](src/standard_consts.hsp) を参照。
+- 標準命令用の名前定数やマクロ
+    - ``gsel_show id`` (= ``gsel id, 1``)
+    - ``dialog msg, dialog_yesno, cap``
+    - などなど。[定義ファイル](src/standard_consts.hsp) を参照。
 
-* 排他的比較文 xswitch
- * swbreak を省略できる switch 文のようなもの。
+- 排他的比較文 xswitch
+    - swbreak を省略できる switch 文のようなもの。
 
-* こまごまとしたコマンド
- * 2つの数値の大きいほうを返す `major_i()`
- * COLORREF値で色を指定する `color32`
- * など
+- こまごまとしたコマンド
+    - 2つの数値の大きいほうを返す `major_i()`
+    - COLORREF値で色を指定する `color32`
+    - など
 
-* 標準的なメタ関数
-  * マクロの定義に便利な小物。
+- 標準的なメタ関数
+    - マクロの定義に便利な小物。
 
-* 一時ファイルの自動消去
-  * デバッグ実行後、`obj`, `hsptmp` を自動的に削除する。
+- 一時ファイルの自動消去
+    - デバッグ実行後、`obj`, `hsptmp` を自動的に削除する。
 
 ### ライセンス
 本リポジトリに含まれるすべてのファイルは public domain とする。
