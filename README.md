@@ -17,7 +17,7 @@ HSP3で使えるヘッダファイルの集まり。コンセプトは **いつ�
 
 ```
 .paket\paket.exe init
-github vain0/hsp_green >> paket.dependencies
+echo github vain0/hsp_green >> paket.dependencies
 .paket\paket.exe install
 ```
 
